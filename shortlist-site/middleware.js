@@ -20,7 +20,7 @@ export const config = {
 
 const COOKIE_NAME = 'aj_session';
 const COOKIE_MAX_AGE = 60 * 60 * 24 * 30; // 30 days
-const CANONICAL_AUTH_ORIGIN = 'https://shortlist-site-two.vercel.app';
+const CANONICAL_AUTH_ORIGIN = 'https://shortlist.upneja.ai';
 const HANDOFF_PARAM = '__aj_auth';
 const HANDOFF_MAX_AGE = 60; // seconds
 const HOST_ALLOWLISTS = [
