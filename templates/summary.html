@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Akhil & Jayshree — Boston Apartment Shortlist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400;1,9..144,500;1,9..144,600&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #faf7f2;
+    --paper: #ffffff;
+    --ink: #1a1815;
+    --ink-soft: #5a554d;
+    --ink-faint: #9a9388;
+    --rule: #e5dfd5;
+    --rule-strong: #c9c1b2;
+
+    --go: #2d5f3e;
+    --go-tint: #e3ede3;
+    --maybe: #b68b2e;
+    --maybe-tint: #f3ead4;
+    --skip: #a8423a;
+    --skip-tint: #f1dcd6;
+    --highlight: #f8e9bc;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    font-feature-settings: "ss01", "ss02";
+    -webkit-font-smoothing: antialiased;
+    padding: 0 24px 80px;
+  }
+
+  .wrap {
+    max-width: 1120px;
+    margin: 0 auto;
+  }
+
+  /* ---------- Header ---------- */
+
+  header {
+    padding: 64px 0 48px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 56px;
+  }
+
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 18px;
+  }
+
+  h1 {
+    font-family: "Fraunces", serif;
+    font-weight: 600;
+    font-size: clamp(40px, 6vw, 64px);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    margin-bottom: 24px;
+  }
+
+  h1 em {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--go);
+  }
+
+  .lede {
+    font-size: 19px;
+    color: var(--ink-soft);
+    max-width: 720px;
+    margin-bottom: 32px;
+  }
+
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    padding-top: 24px;
+    border-top: 1px dashed var(--rule);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+
+  .meta-row strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* ---------- Section ---------- */
+
+  section {
+    margin-bottom: 72px;
+  }
+
+  .section-eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 12px;
+  }
+
+  h2 {
+    font-family: "Fraunces", serif;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 28px;
+  }
+
+  h2 em {
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  /* ---------- Verdict rows ---------- */
+
+  .verdicts {
+    display: grid;
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+
+  .verdict {
+    background: var(--paper);
+    padding: 24px 28px;
+    display: grid;
+    grid-template-columns: 70px 1fr 220px;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .verdict.go { border-left: 4px solid var(--go); }
+  .verdict.maybe { border-left: 4px solid var(--maybe); }
+  .verdict.skip { border-left: 4px solid var(--skip); }
+
+  .rank {
+    font-family: "Fraunces", serif;
+    font-size: 38px;
+    font-weight: 500;
+    font-style: italic;
+    color: var(--ink-faint);
+    line-height: 1;
+  }
+
+  .verdict-body h3 {
+    font-family: "Fraunces", serif;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+
+  .verdict-body .summary {
+    color: var(--ink-soft);
+    font-size: 15px;
+  }
+
+  .verdict-tag {
+    text-align: right;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .verdict-tag .tag {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 4px;
+    margin-bottom: 6px;
+  }
+
+  .go .tag { background: var(--go-tint); color: var(--go); }
+  .maybe .tag { background: var(--maybe-tint); color: var(--maybe); }
+  .skip .tag { background: var(--skip-tint); color: var(--skip); }
+
+  .verdict-tag .reason {
+    display: block;
+    color: var(--ink-soft);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: none;
+    font-weight: 400;
+    font-family: "IBM Plex Sans", sans-serif;
+  }
+
+  /* ---------- Tour timeline ---------- */
+
+  .timeline {
+    position: relative;
+    padding-left: 0;
+  }
+
+  .stop {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 24px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .stop:last-child { border-bottom: none; }
+
+  .stop-time {
+    font-family: "Fraunces", serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+
+  .stop-time .label {
+    display: block;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-top: 4px;
+    font-weight: 500;
+  }
+
+  .stop-detail h4 {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .stop-detail h4 span {
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 400;
+    color: var(--ink-soft);
+    font-size: 13px;
+    margin-left: 8px;
+  }
+
+  .stop-detail p {
+    color: var(--ink-soft);
+    font-size: 14px;
+  }
+
+  .stop-detail .action {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    margin-top: 6px;
+    color: var(--go);
+  }
+
+  .stop.optional .stop-time { color: var(--maybe); }
+  .stop.skip .stop-time { color: var(--ink-faint); text-decoration: line-through; }
+
+  /* ---------- Cards ---------- */
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 20px;
+  }
+
+  .card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card.go { border-top: 4px solid var(--go); }
+  .card.maybe { border-top: 4px solid var(--maybe); }
+  .card.skip { border-top: 4px solid var(--skip); opacity: 0.85; }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 16px;
+  }
+
+  .card-header h3 {
+    font-family: "Fraunces", serif;
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.1;
+  }
+
+  .card-tag {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 3px;
+  }
+
+  .card.go .card-tag { background: var(--go-tint); color: var(--go); }
+  .card.maybe .card-tag { background: var(--maybe-tint); color: var(--maybe); }
+  .card.skip .card-tag { background: var(--skip-tint); color: var(--skip); }
+
+  .card .address {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    color: var(--ink-soft);
+    margin-bottom: 18px;
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    padding: 16px 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 18px;
+  }
+
+  .stat .label {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 2px;
+  }
+
+  .stat .val {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .stat .val.over { color: var(--skip); }
+  .stat .val.fit { color: var(--go); }
+
+  .card .take {
+    font-size: 14.5px;
+    color: var(--ink);
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+
+  .card .watchouts {
+    list-style: none;
+    font-size: 13px;
+    color: var(--ink-soft);
+    padding-top: 16px;
+    border-top: 1px solid var(--rule);
+    margin-top: auto;
+  }
+
+  .card .watchouts li {
+    padding-left: 16px;
+    position: relative;
+    margin-bottom: 6px;
+  }
+
+  .card .watchouts li:before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--ink-faint);
+  }
+
+  .card .contact {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    color: var(--ink-soft);
+    padding-top: 14px;
+    margin-top: 14px;
+    border-top: 1px dashed var(--rule);
+  }
+
+  .card .contact a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule-strong);
+  }
+
+  .card .contact a:hover { border-bottom-color: var(--ink); }
+
+  /* ---------- Flag callouts ---------- */
+
+  .flag-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .flag {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 28px;
+    position: relative;
+  }
+
+  .flag-icon {
+    font-family: "Fraunces", serif;
+    font-size: 48px;
+    font-weight: 500;
+    font-style: italic;
+    color: var(--ink-faint);
+    margin-bottom: 12px;
+    line-height: 1;
+  }
+
+  .flag h3 {
+    font-family: "Fraunces", serif;
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+
+  .flag p {
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  .flag mark {
+    background: var(--highlight);
+    padding: 1px 4px;
+  }
+
+  /* ---------- Decision matrix ---------- */
+
+  .matrix-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    background: var(--paper);
+  }
+
+  table.matrix {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    min-width: 800px;
+  }
+
+  table.matrix th, table.matrix td {
+    padding: 12px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  table.matrix th {
+    background: var(--cream);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--ink-soft);
+  }
+
+  table.matrix th:first-child, table.matrix td:first-child {
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  table.matrix td.go { color: var(--go); font-weight: 600; }
+  table.matrix td.skip { color: var(--skip); font-weight: 600; }
+  table.matrix td.warn { color: var(--maybe); font-weight: 600; }
+
+  /* ---------- Questions list ---------- */
+
+  .questions {
+    counter-reset: q;
+  }
+
+  .question {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--rule);
+    counter-increment: q;
+  }
+
+  .question:last-child { border-bottom: none; }
+
+  .question .num {
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-size: 28px;
+    color: var(--ink-faint);
+    line-height: 1;
+  }
+
+  .question .num:before {
+    content: counter(q, decimal-leading-zero);
+  }
+
+  .question h4 {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .question p {
+    color: var(--ink-soft);
+    font-size: 14px;
+  }
+
+  /* ---------- Files row ---------- */
+
+  .files {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-top: 32px;
+  }
+
+  .file {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 20px;
+  }
+
+  .file .name {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--ink);
+  }
+
+  .file .desc {
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- Footer ---------- */
+
+  footer {
+    margin-top: 80px;
+    padding-top: 32px;
+    border-top: 1px solid var(--rule);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    color: var(--ink-faint);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* ---------- Responsive ---------- */
+
+  @media (max-width: 720px) {
+    body { padding: 0 16px 60px; }
+    header { padding: 36px 0 28px; margin-bottom: 36px; }
+    h2 { font-size: 28px; }
+    section { margin-bottom: 48px; }
+    .verdict {
+      grid-template-columns: 50px 1fr;
+      padding: 18px;
+    }
+    .verdict-tag {
+      grid-column: 1 / -1;
+      text-align: left;
+      padding-left: 0;
+    }
+    .flag-grid { grid-template-columns: 1fr; }
+    .stop { grid-template-columns: 1fr; gap: 8px; }
+    .question { grid-template-columns: 1fr; gap: 4px; }
+  }
+
+  /* ---------- Print ---------- */
+
+  @media print {
+    body { background: white; padding: 0; font-size: 11pt; }
+    section { page-break-inside: avoid; margin-bottom: 32px; }
+    .card { page-break-inside: avoid; }
+    header { padding: 0 0 20px; }
+    h1 { font-size: 32pt; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">Apartment search · Boston · Aug 2026 move-in</div>
+  <h1>Five buildings researched. Two are <em>real contenders</em>.</h1>
+  <p class="lede">Akhil (physician, BIDMC/Longwood) and Jayshree (faculty, 216 Mass Ave) are moving to Boston by August 1, 2026. Akhil's board exam on August 18 is the firm deadline. This is the synthesis of full website + reviews + commute research on the five buildings Akhil shortlisted.</p>
+  <div class="meta-row">
+    <div><strong>Research date</strong> · 2026-05-11</div>
+    <div><strong>Tour target</strong> · Saturday, May 23 2026</div>
+    <div><strong>Move-in</strong> · ~Aug 1 2026</div>
+    <div><strong>Budget cap</strong> · $4,500 / month</div>
+  </div>
+</header>
+
+<!-- ============== VERDICTS ============== -->
+<section id="verdicts">
+  <div class="section-eyebrow">01 · The verdict</div>
+  <h2>Ranked, color-coded, <em>scannable</em>.</h2>
+
+  <div class="verdicts">
+    <div class="verdict go">
+      <div class="rank">1</div>
+      <div class="verdict-body">
+        <h3>Bell Olmsted Park</h3>
+        <div class="summary">Hits every hard requirement. Budget-fit at $4,485. <strong>$500/mo LMA medical discount applies to Akhil's BIDMC affiliation.</strong> Akhil ~10-min drive, Jayshree zero-transfer Route 39.</div>
+      </div>
+      <div class="verdict-tag">
+        <span class="tag">Tour priority 1</span>
+        <span class="reason">All hard reqs · in budget · LMA discount</span>
+      </div>
+    </div>
+
+    <div class="verdict go">
+      <div class="rank">2</div>
+      <div class="verdict-body">
+        <h3>The Brynx</h3>
+        <div class="summary">3 blocks south of Bell Olmsted, same corridor. 1920s gut-rehab, won the Menino Legacy Award. 2BR $4,160–$4,463 fits at low end. Not currently listed online — must call to confirm Aug availability.</div>
+      </div>
+      <div class="verdict-tag">
+        <span class="tag">Tour priority 2</span>
+        <span class="reason">Same corridor · flexible lease · call first</span>
+      </div>
+    </div>
+
+    <div class="verdict maybe">
+      <div class="rank">3</div>
+      <div class="verdict-body">
+        <h3>95 Saint</h3>
+        <div class="summary">Beautiful new building, every amenity, ~14-min drive to BIDMC. <strong>But 2BR pricing is $5,390–$5,485 — about $1,000/mo over budget.</strong> Also: Mission Hill was on the PRD's exclude list.</div>
+      </div>
+      <div class="verdict-tag">
+        <span class="tag">Conditional</span>
+        <span class="reason">Over budget · neighborhood flag</span>
+      </div>
+    </div>
+
+    <div class="verdict skip">
+      <div class="rank">4</div>
+      <div class="verdict-body">
+        <h3>Atrio Boston</h3>
+        <div class="summary">Jayshree could walk to work in 4 minutes. But the building has <strong>no off-street parking, no in-unit laundry, and every 2BR is 1 bath at 480 sqft</strong>. Three independent dealbreakers.</div>
+      </div>
+      <div class="verdict-tag">
+        <span class="tag">Skip</span>
+        <span class="reason">3 hard fails</span>
+      </div>
+    </div>
+
+    <div class="verdict skip">
+      <div class="rank">5</div>
+      <div class="verdict-body">
+        <h3>Longwood Apartments</h3>
+        <div class="summary"><strong>No in-unit W/D. No 2BR with 1.5+ baths in the entire building.</strong> Also: leasing office closed Saturdays, which alone breaks the May 23 tour plan.</div>
+      </div>
+      <div class="verdict-tag">
+        <span class="tag">Skip</span>
+        <span class="reason">2 hard fails · Sat closed</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== TOUR DAY ============== -->
+<section id="tour">
+  <div class="section-eyebrow">02 · Saturday, May 23, 2026</div>
+  <h2>The tour day, <em>back-to-back</em>.</h2>
+  <p class="lede" style="margin-bottom:24px;">The top two buildings are 3 blocks apart on the same street — they can be toured sequentially in a single morning. 95 Saint is a 10-min drive away if you want to add it.</p>
+
+  <div class="timeline">
+    <div class="stop">
+      <div class="stop-time">10:00<span class="label">AM</span></div>
+      <div class="stop-detail">
+        <h4>Bell Olmsted Park <span>161 S Huntington Ave · Jamaica Plain</span></h4>
+        <p>Self-guided via Rently or guided by phone. Saturday office hours 10–5.</p>
+        <p class="action">→ Book: (833) 882-2279 or homes.rently.com/apartments-for-rent/Bell%20Olmsted%20Park/59230</p>
+      </div>
+    </div>
+    <div class="stop">
+      <div class="stop-time">11:30<span class="label">AM</span></div>
+      <div class="stop-detail">
+        <h4>The Brynx <span>201 S Huntington Ave · Jamaica Plain</span></h4>
+        <p>3-block walk south of Bell Olmsted. Saturday hours 10–5.</p>
+        <p class="action">→ Book: schedule.tours/samuels-re/thebrynx</p>
+      </div>
+    </div>
+    <div class="stop optional">
+      <div class="stop-time">1:30<span class="label">PM · OPT</span></div>
+      <div class="stop-detail">
+        <h4>95 Saint <span>95 St Alphonsus St · Mission Hill</span></h4>
+        <p>Only if pursuing despite the budget gap. Saturday office hours 10–4.</p>
+        <p class="action">→ Book: 8207043.onlineleasing.realpage.com</p>
+      </div>
+    </div>
+    <div class="stop optional">
+      <div class="stop-time">3:00<span class="label">PM · OPT</span></div>
+      <div class="stop-detail">
+        <h4>Atrio Boston fly-by <span>18 Haviland St · Fenway</span></h4>
+        <p>15-min walkthrough only if Akhil wants to physically confirm the dealbreakers. Not worth a full tour slot.</p>
+      </div>
+    </div>
+    <div class="stop skip">
+      <div class="stop-time">—</div>
+      <div class="stop-detail">
+        <h4>Longwood Apartments</h4>
+        <p>Office closed Saturdays. Friday May 22 only if you decide to pursue despite the no-W/D / 1-bath hard fails.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CRITICAL FLAGS ============== -->
+<section id="flags">
+  <div class="section-eyebrow">03 · Cross-cutting findings</div>
+  <h2>Two things to know <em>before</em> you send anything.</h2>
+
+  <div class="flag-grid">
+    <div class="flag">
+      <div class="flag-icon">⚐</div>
+      <h3>Symphony Green Line station closes June 6, 2026 — for ~3 years.</h3>
+      <p>The MBTA is doing major accessibility renovations through Summer 2029. E-line trains will bypass Symphony for the entire potential lease. <mark>Route 39 bus is unaffected</mark> — it's the most resilient zero-transfer commute option for Jayshree from all five buildings. If a leasing agent pitches "easy Symphony T access," they're selling slightly outdated info.</p>
+    </div>
+    <div class="flag">
+      <div class="flag-icon">⌖</div>
+      <h3>Bell Olmsted and The Brynx are <mark>3 blocks apart</mark>.</h3>
+      <p>Both on S Huntington Ave in the same JP/Brookline corridor — the exact stretch the original PRD targeted. Same commute profile, different building character. They can (and should) be toured back-to-back. Hospital-professional applicant pool, Route 39 + Green Line E literally at the door of both.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============== BUILDING CARDS ============== -->
+<section id="buildings">
+  <div class="section-eyebrow">04 · Per-building snapshot</div>
+  <h2>The shortlist, <em>at a glance</em>.</h2>
+
+  <div class="cards">
+
+    <!-- Bell Olmsted -->
+    <div class="card go">
+      <div class="card-header">
+        <h3>Bell Olmsted Park</h3>
+        <span class="card-tag">Priority 1</span>
+      </div>
+      <div class="address">161 S Huntington Ave · JP</div>
+      <div class="stats">
+        <div class="stat"><div class="label">2BR Rent</div><div class="val fit">$4,485–$4,490</div></div>
+        <div class="stat"><div class="label">Akhil drive</div><div class="val">~10 min</div></div>
+        <div class="stat"><div class="label">Jayshree transit</div><div class="val">25–35m · 0xfer</div></div>
+        <div class="stat"><div class="label">LMA discount</div><div class="val fit">$500/mo</div></div>
+      </div>
+      <p class="take">Strongest paper match. Central AC, in-unit W/D, underground garage, 24-hr gym + concierge, $500/mo LMA discount makes 2BR comfortable inside budget.</p>
+      <ul class="watchouts">
+        <li>Verify garage cost for 2BR (Bell typical $200–300/mo)</li>
+        <li>HVAC shoulder-season responsiveness — review concern</li>
+        <li>Confirm LMA discount paperwork process</li>
+        <li>Some upstairs footstep noise reported</li>
+      </ul>
+      <div class="contact">(833) 882-2279 · <a href="https://www.bellolmstedpark.com/">bellolmstedpark.com</a></div>
+    </div>
+
+    <!-- The Brynx -->
+    <div class="card go">
+      <div class="card-header">
+        <h3>The Brynx</h3>
+        <span class="card-tag">Priority 2</span>
+      </div>
+      <div class="address">201 S Huntington Ave · JP</div>
+      <div class="stats">
+        <div class="stat"><div class="label">2BR Rent</div><div class="val fit">$4,160–$4,463</div></div>
+        <div class="stat"><div class="label">Akhil drive</div><div class="val">~10 min</div></div>
+        <div class="stat"><div class="label">Jayshree transit</div><div class="val">15–20m · 0xfer</div></div>
+        <div class="stat"><div class="label">Lease</div><div class="val">6/8/9/12mo</div></div>
+      </div>
+      <p class="take">1920s gut-rehab, won 2020 preservation award. Flexible lease terms useful for Jayshree's Sep 1 start. Pets have no weight limit (unusual).</p>
+      <ul class="watchouts">
+        <li>2BR not currently listed online — must call about Aug availability</li>
+        <li>Verify AC system type in unit (resident review flagged it)</li>
+        <li>Automated car-stacker parking — check vehicle fit</li>
+        <li>S Huntington street noise reported</li>
+      </ul>
+      <div class="contact">(833) 608-1358 · <a href="mailto:info@TheBrynx.com">info@TheBrynx.com</a></div>
+    </div>
+
+    <!-- 95 Saint -->
+    <div class="card maybe">
+      <div class="card-header">
+        <h3>95 Saint</h3>
+        <span class="card-tag">Conditional</span>
+      </div>
+      <div class="address">95 St Alphonsus St · Mission Hill</div>
+      <div class="stats">
+        <div class="stat"><div class="label">2BR Rent</div><div class="val over">$5,390–$5,485</div></div>
+        <div class="stat"><div class="label">All-in 2BR</div><div class="val over">~$5,865+</div></div>
+        <div class="stat"><div class="label">Akhil drive</div><div class="val">~14 min</div></div>
+        <div class="stat"><div class="label">Jayshree transit</div><div class="val">~15m · 0xfer</div></div>
+      </div>
+      <p class="take">Genuinely well-built (LEED, 3 years old, central AC + Nest, in-unit W/D, real concierge). 4.2★ on Google. But ~$1,000/mo over budget for 2BR and lives in the originally-excluded Mission Hill.</p>
+      <ul class="watchouts">
+        <li>Open with budget candor — ask about concessions or LMA discount before booking</li>
+        <li>Floor-noise transmission flagged in 1-star reviews</li>
+        <li>Application portal had reported glitches — test before deposit</li>
+        <li>2024/2025 incidents on lower St Alphonsus / Tremont; building sits on the safer north end</li>
+      </ul>
+      <div class="contact">(781) 349-5070 · <a href="mailto:winston@wingatecompanies-leasing.com">winston@wingate…</a></div>
+    </div>
+
+    <!-- Atrio -->
+    <div class="card skip">
+      <div class="card-header">
+        <h3>Atrio Boston</h3>
+        <span class="card-tag">Skip</span>
+      </div>
+      <div class="address">18 Haviland St · Fenway</div>
+      <div class="stats">
+        <div class="stat"><div class="label">2BR Rent</div><div class="val">$3,855–$4,022</div></div>
+        <div class="stat"><div class="label">Parking</div><div class="val over">None</div></div>
+        <div class="stat"><div class="label">In-unit W/D</div><div class="val over">None</div></div>
+        <div class="stat"><div class="label">2BR baths</div><div class="val over">1 BA only</div></div>
+      </div>
+      <p class="take">Jayshree could walk to work in 4 minutes — unbeatable commute. But the building has three independent hard fails: no parking, basement-only laundry, 1-bath 2BRs at 480 sqft total. 1920 building rebranded.</p>
+      <ul class="watchouts">
+        <li>Short qualifier email could surface hidden 2BR/2BA inventory (unlikely)</li>
+        <li>"Paper-thin walls" and weed-smoke enforcement noted in reviews</li>
+        <li>20-lb cap on "Other Pets" — dealbreaker for larger dog</li>
+      </ul>
+      <div class="contact">(617) 266-1805 · <a href="https://www.atrioboston.com/">atrioboston.com</a></div>
+    </div>
+
+    <!-- Longwood Apts -->
+    <div class="card skip">
+      <div class="card-header">
+        <h3>Longwood Apartments</h3>
+        <span class="card-tag">Skip</span>
+      </div>
+      <div class="address">1575 Tremont St · Mission Hill</div>
+      <div class="stats">
+        <div class="stat"><div class="label">2BR Rent</div><div class="val">$4,013–$4,227</div></div>
+        <div class="stat"><div class="label">In-unit W/D</div><div class="val over">None</div></div>
+        <div class="stat"><div class="label">2BR baths</div><div class="val over">1 BA only</div></div>
+        <div class="stat"><div class="label">Sat tours</div><div class="val over">Closed</div></div>
+      </div>
+      <p class="take">Akhil's drive at ~5–10 min ties for best in shortlist. But no in-unit W/D (basement only), no 2-bath 2BRs anywhere, and the leasing office is closed Saturdays. 1964 high-rise. Heavy student/resident mix.</p>
+      <ul class="watchouts">
+        <li>Friday May 22 the only weekday tour option</li>
+        <li>Same Mission Hill safety patterns as 95 Saint</li>
+        <li>PTAC AC sleeves can be loud / underperform</li>
+      </ul>
+      <div class="contact">(617) 663-0530 · <a href="https://thelongwoodapartments.com/">thelongwoodapartments.com</a></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============== DECISION MATRIX ============== -->
+<section id="matrix">
+  <div class="section-eyebrow">05 · Side-by-side</div>
+  <h2>The decision matrix.</h2>
+  <div class="matrix-wrap">
+    <table class="matrix">
+      <thead>
+        <tr>
+          <th>Dimension</th>
+          <th>Bell Olmsted</th>
+          <th>The Brynx</th>
+          <th>95 Saint</th>
+          <th>Atrio</th>
+          <th>Longwood Apts</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2BR / 1.5+ BA in budget</td>
+          <td class="go">✓ $4,485</td>
+          <td class="go">✓ $4,160</td>
+          <td class="skip">✗ over $5,300</td>
+          <td class="skip">✗ 1 BA only</td>
+          <td class="skip">✗ 1 BA only</td>
+        </tr>
+        <tr>
+          <td>In-unit W/D</td>
+          <td class="go">✓</td>
+          <td class="go">✓</td>
+          <td class="go">✓</td>
+          <td class="skip">✗ basement</td>
+          <td class="skip">✗ on-site</td>
+        </tr>
+        <tr>
+          <td>Off-street parking</td>
+          <td class="go">✓ garage</td>
+          <td class="go">✓ stackers</td>
+          <td class="go">✓ $375/mo</td>
+          <td class="skip">✗ none</td>
+          <td class="go">✓ $300/mo</td>
+        </tr>
+        <tr>
+          <td>Central / mini-split AC</td>
+          <td class="go">✓ central</td>
+          <td class="warn">? verify</td>
+          <td class="go">✓ + Nest</td>
+          <td class="warn">? verify</td>
+          <td class="go">✓ PTAC</td>
+        </tr>
+        <tr>
+          <td>In-building gym</td>
+          <td class="go">✓ 24-hr</td>
+          <td class="go">✓ + rock wall</td>
+          <td class="go">✓</td>
+          <td class="go">✓ + yoga</td>
+          <td class="go">✓</td>
+        </tr>
+        <tr>
+          <td>Cat-friendly</td>
+          <td class="go">✓ $40/mo</td>
+          <td class="go">✓ $50/mo</td>
+          <td class="go">✓ $100/mo</td>
+          <td class="go">✓ 20-lb cap</td>
+          <td class="go">✓ $35/mo</td>
+        </tr>
+        <tr>
+          <td>Akhil drive to BIDMC</td>
+          <td class="go">~10 min</td>
+          <td class="go">~10 min</td>
+          <td class="go">~14 min</td>
+          <td class="go">~8 min</td>
+          <td class="go">~5–10 min</td>
+        </tr>
+        <tr>
+          <td>Jayshree transit (0 transfers)</td>
+          <td class="go">✓ Rt 39 / E</td>
+          <td class="go">✓ Rt 39 / E</td>
+          <td class="go">✓ E / Rt 39</td>
+          <td class="go">✓ 4-min walk</td>
+          <td class="go">✓ Rt 39 / E</td>
+        </tr>
+        <tr>
+          <td>PRD target neighborhood</td>
+          <td class="go">✓ JP</td>
+          <td class="go">✓ JP</td>
+          <td class="warn">✗ Mission Hill</td>
+          <td class="warn">✗ Fenway</td>
+          <td class="warn">✗ Mission Hill</td>
+        </tr>
+        <tr>
+          <td>LMA medical discount</td>
+          <td class="go">✓ $500/mo</td>
+          <td class="warn">? ask</td>
+          <td class="warn">? ask</td>
+          <td class="skip">none</td>
+          <td class="warn">? ask</td>
+        </tr>
+        <tr>
+          <td>Sat May 23 tour possible</td>
+          <td class="go">✓ 10–5</td>
+          <td class="go">✓ 10–5</td>
+          <td class="go">✓ 10–4</td>
+          <td class="go">✓ 9–5</td>
+          <td class="skip">✗ closed</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============== OPEN QUESTIONS ============== -->
+<section id="questions">
+  <div class="section-eyebrow">06 · Decisions needed from you</div>
+  <h2>Five questions before I send anything.</h2>
+
+  <div class="questions">
+    <div class="question">
+      <div class="num"></div>
+      <div>
+        <h4>Is $4,500/mo firm?</h4>
+        <p>If you'd stretch to $5,500 for the right place, 95 Saint stays on the tour list. Otherwise it drops.</p>
+      </div>
+    </div>
+    <div class="question">
+      <div class="num"></div>
+      <div>
+        <h4>Mission Hill — intentional re-think, or did it slip in?</h4>
+        <p>95 Saint and Longwood Apts are both in the originally-excluded Mission Hill. If still excluded, both come off the list immediately.</p>
+      </div>
+    </div>
+    <div class="question">
+      <div class="num"></div>
+      <div>
+        <h4>Is in-unit W/D truly hard?</h4>
+        <p>If softened, Atrio's 4-min walk for Jayshree becomes very compelling. (Atrio also has every utility included, which is a real cost offset.)</p>
+      </div>
+    </div>
+    <div class="question">
+      <div class="num"></div>
+      <div>
+        <h4>Jayshree's contact info?</h4>
+        <p>Need her phone, email, and last name for the email signoff block. Or tell me to send solo from Akhil only.</p>
+      </div>
+    </div>
+    <div class="question">
+      <div class="num"></div>
+      <div>
+        <h4>Send the Atrio + Longwood qualifier emails?</h4>
+        <p>They're drafted as short single-question inquiries. Sending costs nothing and closes both loops cleanly. Or skip and just move on.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FILES ============== -->
+<section id="files">
+  <div class="section-eyebrow">07 · What's on disk</div>
+  <h2>Files generated, in <em>~/Projects/jp/templates/</em>.</h2>
+  <div class="files">
+    <div class="file">
+      <div class="name">shortlist.md</div>
+      <div class="desc">Full research synthesis — per-building deep dives, reviews, sources, commute math, decision matrix.</div>
+    </div>
+    <div class="file">
+      <div class="name">personalized-inquiries.md</div>
+      <div class="desc">Five ready-to-send emails, one per building, tailored to what we already know about each.</div>
+    </div>
+    <div class="file">
+      <div class="name">broker-inquiry-template.md</div>
+      <div class="desc">Master template with Akhil's contact filled in. Reusable for future inquiries.</div>
+    </div>
+    <div class="file">
+      <div class="name">summary.html</div>
+      <div class="desc">This page — visual summary for fast scanning.</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>Boston apartment shortlist · synthesis as of 2026-05-11</div>
+  <div>~/Projects/jp/templates/summary.html</div>
+</footer>
+
+</div>
+</body>
+</html>

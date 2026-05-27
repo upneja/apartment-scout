@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Creator Video OS - ApartmentScout Test</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f6f3ee;
+      --paper: #ffffff;
+      --ink: #151515;
+      --muted: #5f5a52;
+      --faint: #8d8578;
+      --line: #ddd4c6;
+      --accent: #2f6f63;
+      --accent-soft: #e4f1ec;
+      --warn: #9a5b17;
+      --code: #201f1d;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+    header {
+      padding: 56px 28px 32px;
+      border-bottom: 1px solid var(--line);
+      background: var(--paper);
+    }
+    .wrap { max-width: 1160px; margin: 0 auto; }
+    .eyebrow {
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    h1 {
+      margin: 0;
+      max-width: 900px;
+      font-size: clamp(38px, 7vw, 74px);
+      line-height: .95;
+      letter-spacing: 0;
+    }
+    h2 {
+      margin: 0 0 18px;
+      font-size: clamp(26px, 4vw, 42px);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+    h3 { margin: 22px 0 10px; font-size: 18px; }
+    p { margin: 0 0 16px; color: var(--muted); max-width: 820px; }
+    a { color: var(--accent); }
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      background: rgba(246, 243, 238, .92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    nav .wrap {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 12px 28px;
+    }
+    nav a {
+      display: inline-flex;
+      white-space: nowrap;
+      text-decoration: none;
+      color: var(--muted);
+      padding: 8px 10px;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    nav a:hover { border-color: var(--line); color: var(--ink); background: var(--paper); }
+    main { padding: 34px 28px 80px; }
+    section {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 28px;
+      margin: 0 auto 20px;
+      max-width: 1160px;
+    }
+    .section-kicker {
+      color: var(--faint);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 18px;
+      background: #fbfaf8;
+    }
+    .card strong { display: block; margin-bottom: 4px; }
+    .pill {
+      display: inline-flex;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      margin-right: 8px;
+      margin-bottom: 8px;
+    }
+    ul { margin: 0; padding-left: 20px; color: var(--muted); }
+    li { margin: 8px 0; }
+    pre {
+      margin: 0;
+      padding: 18px;
+      background: var(--code);
+      color: #f4efe8;
+      border-radius: 10px;
+      overflow-x: auto;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; }
+    table { width: 100%; border-collapse: collapse; min-width: 820px; }
+    th, td { text-align: left; vertical-align: top; padding: 12px; border-bottom: 1px solid var(--line); font-size: 14px; }
+    th { background: #f1ece4; color: var(--ink); font-size: 12px; text-transform: uppercase; letter-spacing: .06em; }
+    tr:last-child td { border-bottom: 0; }
+    .note {
+      border-left: 4px solid var(--warn);
+      padding: 12px 14px;
+      background: #fff7e9;
+      color: #4c361b;
+      border-radius: 8px;
+      margin: 18px 0;
+    }
+    footer {
+      color: var(--faint);
+      font-size: 13px;
+      padding: 24px 28px 48px;
+      text-align: center;
+    }
+    @media (max-width: 760px) {
+      header { padding-top: 38px; }
+      .grid { grid-template-columns: 1fr; }
+      section { padding: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="eyebrow">Private Creator Video OS</div>
+      <h1>ApartmentScout video package test and deployment notes</h1>
+      <p style="margin-top:20px;">A private report documenting the side-project-video-package skill, the ApartmentScout test run, the package outputs, and the protected publishing setup.</p>
+    </div>
+  </header>
+  <nav>
+    <div class="wrap">
+      <a href="#summary">Summary</a>
+      <a href="#invoke">Invoke</a>
+      <a href="#test">Test Run</a>
+      <a href="#package">Package</a>
+      <a href="#script">Script</a>
+      <a href="#platforms">Platforms</a>
+      <a href="#publish">Private Publish</a>
+    </div>
+  </nav>
+  <main>
+    <section id="summary"><div class="section-kicker">summary</div><h2>What I Did</h2>
+      <div class="grid">
+        <div class="card"><strong>Skill</strong><span class="pill">created</span><p>side-project-video-package</p></div>
+        <div class="card"><strong>Test subject</strong><span class="pill">verified</span><p>ApartmentScout / HomeBase</p></div>
+        <div class="card"><strong>Validation</strong><span class="pill">PASS</span><p>Strict package validation passed.</p></div>
+      </div>
+      <h3>Work Log</h3>
+      <ul><li>Created the side-project-video-package Codex skill under /Users/upneja/.codex/skills/side-project-video-package.</li><li>Built a normalized package schema, research playbook, scripting patterns, shot-list guide, editing guide, platform variant guidance, publishing checklist, and outsourcing handoff templates.</li><li>Added scripts to scaffold a package, render a static HTML dashboard, and validate the package in strict mode.</li><li>Tested the skill against ApartmentScout from /Users/upneja/Projects/jp.</li><li>Checked Vercel deployments and found that the newest production deployment attached to the app project currently serves Pairscope, not ApartmentScout.</li><li>Selected the latest verified ApartmentScout app deployment for capture: https://app-orjymzjd7-ayush-upnejas-projects.vercel.app.</li><li>Generated the ApartmentScout video package under /Users/upneja/Projects/reels/apartmentscout-video-package.</li><li>Rendered the local dashboard and ran strict validation; the package passed.</li></ul>
+    </section>
+    <section id="invoke"><div class="section-kicker">invoke</div><h2>How To Invoke This Skill</h2>
+      <p>Use the skill name directly in future Codex prompts.</p>
+      <pre>Use $side-project-video-package for /path/to/project and the live URL https://...
+Create the output package in /Users/upneja/Projects/reels/&lt;project&gt;-video-package.
+
+ApartmentScout example:
+Use $side-project-video-package for /Users/upneja/Projects/jp and https://app-orjymzjd7-ayush-upnejas-projects.vercel.app.
+Include script, shot list, B-roll, platform cuts, dashboard, publishing checklist, and editor handoff.</pre>
+    </section>
+    <section id="test"><div class="section-kicker">test</div><h2>ApartmentScout Test Findings</h2>
+      <p><strong>Core message:</strong> Apartment filters catch bedrooms and price, but they miss the constraints that actually decide whether a place works. ApartmentScout turns a messy Boston apartment search into a scored, redacted dashboard with hard filters, commute checks, walkability, map context, and ranked tradeoffs.</p>
+      <div class="note">Deployment mismatch found: the newest production deployment attached to the Vercel app project served Pairscope on 2026-05-22, so I used the latest verified ApartmentScout deployment instead.</div>
+      <div class="grid">
+        <div class="card"><strong>Verified ApartmentScout URL</strong><p><a href="https://app-orjymzjd7-ayush-upnejas-projects.vercel.app">app-orjymzjd7...</a></p></div>
+        <div class="card"><strong>Visible proof</strong><p>21 listings, 6 pass hard requirements, top score 88.</p></div>
+        <div class="card"><strong>Claim posture</strong><p>Dashboard deployed with demo/static data; live ingestion remains in progress unless confirmed.</p></div>
+      </div>
+      <h3>Claim Review</h3>
+      <div class="table-wrap"><table><thead><tr><th>Claim</th><th>Status</th><th>Source</th><th>Approved Wording</th></tr></thead><tbody><tr><td>ApartmentScout is an AI-powered Boston apartment finder with a scoring algorithm and dashboard.</td><td>approved</td><td>/Users/upneja/Projects/jp/README.md and /Users/upneja/Projects/jp/PRD.md</td><td>I built an AI-assisted Boston apartment dashboard that scores listings against the constraints that actually matter.</td></tr><tr><td>The deployed HomeBase/ApartmentScout dashboard shows 21 listings, 6 passing hard requirements, and a top score of 88.</td><td>approved_with_context</td><td>Verified Vercel fetch of https://app-orjymzjd7-ayush-upnejas-projects.vercel.app on 2026-05-22</td><td>This deployed demo is tracking 21 listings, with 6 passing the hard filters and a top score of 88.</td></tr><tr><td>The app automatically fetches listings every morning and sends notifications.</td><td>blocked_until_confirmed</td><td>/Users/upneja/Projects/jp/README.md says pipeline and live data ingestion are in progress; notifications are pending.</td><td>The dashboard is working with demo/static data, and the ingestion pipeline is the next piece being wired up.</td></tr><tr><td>The app found the final apartment or saved a specific number of hours.</td><td>blocked_until_confirmed</td><td>No verified outcome metric found in repo or deployment inspection.</td><td>It turned a search that would have been a spreadsheet and a bunch of tabs into a ranked shortlist.</td></tr><tr><td>The system evaluates photos and listing text with Claude and external commute/place APIs.</td><td>approved_as_architecture_not_live_status</td><td>/Users/upneja/Projects/jp/README.md and /Users/upneja/Projects/jp/PRD.md</td><td>The design combines hard filters with AI/photo scoring and commute/walkability signals; the live pipeline is still being finished.</td></tr><tr><td>The current latest Vercel app deployment is ApartmentScout.</td><td>blocked</td><td>Verified Vercel fetch of https://app-jcma4xten-ayush-upnejas-projects.vercel.app showed Pairscope on 2026-05-22.</td><td>Use the verified ApartmentScout deployment link for capture; do not say the current app project production URL is ApartmentScout until the Vercel project is corrected.</td></tr></tbody></table></div>
+    </section>
+    <section id="package"><div class="section-kicker">package</div><h2>Generated Package</h2>
+      <p>The generated package lives locally at <code>/Users/upneja/Projects/reels/apartmentscout-video-package</code>.</p>
+      <ul><li>video-package.md - full strategy, claims, script, edit plan, and missing assets.</li><li>dashboard/index.html - generated local package dashboard.</li><li>package.json - normalized data used to render the dashboard and this report.</li><li>platform-variants.md - TikTok, Reels, Shorts, LinkedIn, X, and YouTube variants.</li><li>publishing-checklist.md - capture, edit, export, QA, and metrics checklist.</li><li>data/shot-list.csv - A-roll, screen capture, proof, and B-roll shot list.</li><li>data/b-roll-plan.csv - beat-by-beat visual coverage.</li><li>data/asset-manifest.csv - required assets and deploy URL notes.</li><li>handoff/editor-brief.md - editor-ready creative brief.</li><li>handoff/outsourcing-packet.md - paid editor trial packet and scoring rubric.</li></ul>
+      <h3>Missing Assets Before Filming</h3>
+      <ul><li>Fresh redacted screen recording of the verified ApartmentScout deployment home page.</li><li>Fresh redacted screen recording of /listing/1 showing score, commute, walkability, and AI summary.</li><li>Fresh redacted screen recording of /map; if map rendering is still a spinner, capture a fallback UI shot instead.</li><li>Talking-head A-roll for hook, context, honest status, and CTA.</li><li>Creator confirmation on whether &#39;family&#39;, &#39;brother&#39;, or fully anonymous wording is acceptable.</li><li>Creator confirmation on current pipeline status before publishing.</li><li>Optional mock spreadsheet image or screen recording for the problem setup.</li><li>Optional editor reference clip showing desired pacing and caption style.</li></ul>
+    </section>
+    <section id="script"><div class="section-kicker">script</div><h2>Main Script And Shot Plan</h2>
+      <h3>Hook Options</h3>
+      <ul><li>Apartment filters are good at bedrooms. They are terrible at the stuff that actually decides where you live.</li><li>My family had a Boston apartment search with way too many constraints, so I turned it into a scoring dashboard.</li><li>This used to be listings, transit maps, group texts, and a spreadsheet. Now it is one ranked feed.</li><li>I built an apartment search app that rejects places before anyone wastes time touring them.</li><li>The hard part was not finding apartments. It was proving which ones actually worked.</li><li>If a problem keeps becoming a spreadsheet, I think it probably deserves a tiny app.</li></ul>
+      <h3>Script Beats</h3>
+      <div class="table-wrap"><table><thead><tr><th>Time</th><th>Spoken Line</th><th>Visual</th><th>On-Screen Text</th><th>Edit Note</th><th>Risk Note</th></tr></thead><tbody><tr><td>0:00-0:03</td><td>Apartment filters are good at bedrooms. They are terrible at the stuff that actually decides where you live.</td><td>Tight talking head, then three-frame flash of generic rental tabs, a commute map, and the ApartmentScout feed.</td><td>Beds != fit</td><td>Start on face with no logo intro. Punch in 8 percent on &#39;actually decides&#39;. Flash the UI on the final word.</td><td>No claim risk. Keep generic rental tabs blurred or use recreated mock tabs.</td></tr><tr><td>0:03-0:07</td><td>So I built ApartmentScout for a real Boston search with annoyingly specific constraints.</td><td>Screen recording opens the HomeBase/ApartmentScout sidebar and feed. Show 21 listings found, 6 pass all requirements, top score 88.</td><td>21 listings -&gt; 6 real candidates</td><td>Zoom to the top stats line. Crop out personal note in sidebar or blur the tagline with names/pseudonyms.</td><td>Approved for verified deployment only. Redact names/pseudonyms in sidebar.</td></tr><tr><td>0:07-0:12</td><td>It checks the hard no-go rules first: budget, two beds, parking, in-unit laundry, pets, floor, and the actual commute.</td><td>Rapid checklist overlay on top of feed filters, then cut to a listing detail page showing specs and commute bars.</td><td>Hard filters first</td><td>Use a vertical checklist animation. Highlight no more than 4 items on screen at once; split into two quick groups.</td><td>Use public-safe labels. Do not show private destination addresses.</td></tr><tr><td>0:12-0:18</td><td>Then it scores the tradeoffs normal filters miss: kitchen quality, light, gym, walkability, transit, and value.</td><td>Detail page score ring at 88, category bars, AI summary, and walkability cards.</td><td>Score the tradeoffs</td><td>Cursor path: score ring -&gt; category bars -&gt; walkability. Add one callout at a time. Hold score ring for 0.6 seconds.</td><td>Say &#39;scores&#39; and &#39;tradeoffs&#39;, not &#39;finds the objectively best apartment&#39;.</td></tr><tr><td>0:18-0:25</td><td>This top listing is not just cheap. The dashboard explains why it works and where it is weaker.</td><td>Listing detail page: price, 2 bed/2 bath, commute bars, AI summary, notes and flags.</td><td>$3,300 / 88 match / 32 min transit</td><td>Blur exact address, external listing URL, phone numbers, and any family-specific names. Keep price/score/commute visible.</td><td>Do not imply the specific listing is still available. Add tiny caption: &#39;deployment snapshot&#39;.</td></tr><tr><td>0:25-0:31</td><td>The map is the part I would trust most: it turns a bunch of tabs into a morning shortlist.</td><td>Map view with colored score legend, then return to feed sorted by best match.</td><td>Tabs -&gt; shortlist</td><td>If the live map spinner remains during capture, show the legend and sidebar, then cut back to the feed. Do not linger on a loading state.</td><td>If map tiles or pins do not load, use feed/detail proof instead and mark map as planned/partial.</td></tr><tr><td>0:31-0:38</td><td>Honest status: the dashboard is deployed with demo data, and the live ingestion pipeline is the next piece I am wiring up.</td><td>README status line highlighted, then quick cut to architecture diagram or repo tree.</td><td>Frontend deployed. Pipeline in progress.</td><td>Use a clean lower-third status card so the honesty reads as credibility, not an apology.</td><td>Required unless the creator confirms live ingestion is now complete.</td></tr><tr><td>0:38-0:45</td><td>If a family problem keeps turning into a spreadsheet, this is the kind of tiny app I think is worth building.</td><td>Back to talking head. End with quick montage: feed, detail score, map, README status. Final frame has project name and CTA.</td><td>What spreadsheet should become an app?</td><td>End on face, not just UI. Leave 0.5 seconds for the CTA text to breathe.</td><td>CTA invites comments; no unverified product availability claim.</td></tr></tbody></table></div>
+      <h3>Shot List</h3>
+      <div class="table-wrap"><table><thead><tr><th>ID</th><th>Priority</th><th>Type</th><th>Description</th><th>Capture Notes</th><th>Privacy Notes</th></tr></thead><tbody><tr><td>A1</td><td>must</td><td>talking_head</td><td>Opening hook delivered straight to camera.</td><td>Record 3 takes: dry, slightly faster, slightly warmer.</td><td>No private screens behind you.</td></tr><tr><td>S1</td><td>must</td><td>screen_capture</td><td>ApartmentScout feed showing 21 listings, 6 pass all requirements, top score 88.</td><td>URL: https://app-orjymzjd7-ayush-upnejas-projects.vercel.app. Slowly move cursor from title to stats.</td><td>Blur sidebar names/pseudonyms and exact listing addresses if visible.</td></tr><tr><td>S2</td><td>must</td><td>screen_capture</td><td>Feed filters and top card specs: price, 2 bed, 2 bath, laundry, parking, pets.</td><td>Toggle score and price filters once if interaction is smooth; otherwise capture static sorted feed.</td><td>Crop out full street address on listing card.</td></tr><tr><td>S3</td><td>must</td><td>screen_capture</td><td>Listing detail page with score ring, category bars, commute bars, AI summary, and flags.</td><td>Open https://app-orjymzjd7-ayush-upnejas-projects.vercel.app/listing/1 and scroll from hero to score card to commute section.</td><td>Blur exact address, original listing URL, and any contact info.</td></tr><tr><td>S4</td><td>should</td><td>screen_capture</td><td>Map view showing score legend and spatial context.</td><td>If map tiles load, pan slightly. If loading spinner persists, capture only legend/nav for a quick beat.</td><td>Do not show private destination markers if visible.</td></tr><tr><td>S5</td><td>must</td><td>proof_insert</td><td>README status line showing frontend scaffolded with mock data and pipeline in progress.</td><td>Highlight the status line and project status table.</td><td>No private environment variables or repo tokens.</td></tr><tr><td>B1</td><td>should</td><td>b_roll</td><td>Hands opening laptop with apartment dashboard, coffee or notebook in frame.</td><td>Slow push-in or static shot with cursor moving once.</td><td>Screen should use redacted feed or be out of focus.</td></tr><tr><td>B2</td><td>could</td><td>b_roll</td><td>Recreated messy spreadsheet or notes page with columns like price, commute, laundry, parking.</td><td>Use fake rows only; this is for problem texture.</td><td>No real listing addresses or names.</td></tr><tr><td>A2</td><td>must</td><td>talking_head</td><td>Closing CTA line asking what spreadsheet should become an app.</td><td>Record one calm take and one faster take for TikTok/Reels.</td><td>No private screens behind you.</td></tr></tbody></table></div>
+    </section>
+    <section id="platforms"><div class="section-kicker">platforms</div><h2>Platform Variants</h2>
+      <div class="table-wrap"><table><thead><tr><th>Platform</th><th>Runtime</th><th>Aspect</th><th>Hook</th><th>CTA</th><th>Export Notes</th><th>Copy</th></tr></thead><tbody><tr><td>TikTok</td><td>35-45 sec</td><td>9:16</td><td>Apartment filters are good at bedrooms. They are terrible at the stuff that actually decides where you live.</td><td>Comment the spreadsheet you want turned into a tiny app.</td><td>Native-feeling vertical cut, bigger captions, fastest pacing, no corporate intro, optional platform-native low-volume sound.</td><td>Built a tiny AI-assisted apartment dashboard for a real Boston search. It scores the constraints Zillow filters do not understand.</td></tr><tr><td>Instagram Reels</td><td>35-45 sec</td><td>9:16</td><td>This used to be listings, transit maps, group texts, and a spreadsheet. Now it is one ranked feed.</td><td>Save this if you also turn family logistics into software.</td><td>More polished caption styling, clean cover frame with face plus score ring, watermark-free export.</td><td>ApartmentScout: a small side project for ranking apartments by the messy real constraints: commute, laundry, parking, pets, walkability, and fit.</td></tr><tr><td>YouTube Shorts</td><td>40-55 sec</td><td>9:16</td><td>I built an apartment search app that rejects places before anyone wastes time touring them.</td><td>Subscribe for the build log and the pipeline update.</td><td>Search-aware title, clean captions, avoid copyrighted music, include &#39;demo data&#39; honesty beat.</td><td>I built ApartmentScout, an AI-assisted Boston apartment dashboard that scores listings against real constraints instead of just beds and price.</td></tr><tr><td>LinkedIn</td><td>60-90 sec</td><td>4:5 or 9:16</td><td>The interesting part of this project was not the AI. It was encoding one family&#39;s actual decision process.</td><td>Ask: what recurring personal workflow would you turn into software?</td><td>Slower pacing, more context in post copy, include README status and architecture screenshot, captions required for silent autoplay.</td><td>I built ApartmentScout as a narrow personal system: hard filters first, then scored tradeoffs. The dashboard is deployed with demo data; ingestion is the next piece. The lesson: the best small AI apps often start as someone else&#39;s annoying spreadsheet.</td></tr><tr><td>X</td><td>30-45 sec</td><td>9:16 or 16:9</td><td>If a problem keeps becoming a spreadsheet, it probably deserves a tiny app.</td><td>Reply with the spreadsheet you would replace.</td><td>Post video as first tweet, then reply with screenshots of feed, detail score, architecture, and the caveat that live ingestion is in progress.</td><td>Built ApartmentScout: a tiny dashboard that ranks Boston apartments by real constraints: commute, parking, laundry, pets, walkability, and score. The frontend is deployed; ingestion is next.</td></tr><tr><td>YouTube Long Form</td><td>4-6 min</td><td>16:9</td><td>I built this because normal apartment search tools cannot model one real family&#39;s constraints.</td><td>Subscribe for the follow-up where the ingestion pipeline goes live.</td><td>Use chapters: problem, constraints, scoring model, UI walkthrough, honest status, next build steps. Capture 16:9 screen recordings separately.</td><td>A walkthrough of ApartmentScout: how I modeled a Boston apartment search, built the scoring dashboard, and what still needs to ship before it becomes a live daily pipeline.</td></tr></tbody></table></div>
+    </section>
+    <section id="publish"><div class="section-kicker">publish</div><h2>Private Publishing Setup</h2>
+      <p>This report is designed to live behind the existing Google OAuth gate, with this route allowlisted only to Ayush.</p>
+      <ul><li>Private report route: /creator-video-os/</li><li>Route allowlist: ayushupneja@gmail.com only.</li><li>Publishing pattern: reuse the existing shortlist-site Google OAuth middleware and Vercel project.</li><li>Requested subdomain: reels.upneja.ai.</li><li>Subdomain auth note: middleware now uses the existing canonical OAuth callback on shortlist-site-two.vercel.app, then hands a short-lived signed token back to reels.upneja.ai so no additional Google OAuth callback URI is required. DNS still needs the Porkbun A record for reels.upneja.ai.</li></ul>
+      <h3>Next Operating Model</h3>
+      <ul><li>Add each future generated package as a new route or section under this private creator hub.</li><li>Keep generated local artifacts in /Users/upneja/Projects/reels, then publish the reviewable summary to the gated site.</li><li>Keep raw footage, private addresses, and unredacted screen recordings out of the published artifact.</li><li>Use route-specific allowlists for any package that needs to be shared with an editor or collaborator.</li></ul>
+    </section>
+  </main>
+  <footer>Generated 2026-05-22. Private to ayushupneja@gmail.com.</footer>
+</body>
+</html>

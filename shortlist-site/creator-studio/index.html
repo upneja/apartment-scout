@@ -1,0 +1,675 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Private Creator Studio</title>
+    <style>
+      :root {
+        --bg: #f5f1e8;
+        --ink: #171717;
+        --muted: #665f55;
+        --soft: #8a8174;
+        --line: #d7cdbd;
+        --panel: #fffdf8;
+        --panel-2: #eee7da;
+        --accent: #0e5f73;
+        --accent-2: #b84f38;
+        --green: #16704a;
+        --shadow: 0 24px 70px rgba(37, 31, 22, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        background: var(--bg);
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        letter-spacing: 0;
+      }
+
+      body {
+        margin: 0;
+        background:
+          linear-gradient(90deg, rgba(14, 95, 115, 0.08), transparent 36%),
+          linear-gradient(180deg, rgba(184, 79, 56, 0.06), transparent 28%),
+          var(--bg);
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .shell {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 26px 0 54px;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        border-bottom: 2px solid var(--ink);
+        padding-bottom: 18px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .mark {
+        display: grid;
+        width: 42px;
+        height: 42px;
+        place-items: center;
+        border-radius: 8px;
+        background: var(--ink);
+        color: var(--bg);
+        font-weight: 900;
+      }
+
+      .brand strong,
+      .brand span {
+        display: block;
+      }
+
+      .brand span,
+      .status span,
+      .eyebrow,
+      .card-label {
+        color: var(--soft);
+        font-size: 12px;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+
+      .status {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 8px;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 28px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: var(--panel);
+        padding: 6px 10px;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 750;
+        white-space: nowrap;
+      }
+
+      .pill.good {
+        border-color: rgba(22, 112, 74, 0.22);
+        background: #e6f4eb;
+        color: var(--green);
+      }
+
+      .pill.accent {
+        border-color: rgba(14, 95, 115, 0.22);
+        background: #e4f2f5;
+        color: var(--accent);
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+        gap: 20px;
+        padding: 32px 0 22px;
+      }
+
+      .hero h1 {
+        max-width: 820px;
+        margin: 10px 0 0;
+        font-size: clamp(44px, 7vw, 92px);
+        line-height: 0.9;
+        letter-spacing: 0;
+      }
+
+      .hero p {
+        max-width: 760px;
+        margin: 20px 0 0;
+        color: var(--muted);
+        font-size: 18px;
+        line-height: 1.55;
+      }
+
+      .hero-panel,
+      .panel,
+      .stage,
+      .artifact,
+      .skill-card,
+      .check-card {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: rgba(255, 253, 248, 0.9);
+        box-shadow: var(--shadow);
+      }
+
+      .hero-panel {
+        display: grid;
+        gap: 10px;
+        align-content: start;
+        padding: 18px;
+      }
+
+      .hero-panel div {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #f8f4ec;
+        padding: 13px;
+      }
+
+      .hero-panel strong,
+      .hero-panel span {
+        display: block;
+      }
+
+      .hero-panel strong {
+        margin-top: 7px;
+        font-size: 14px;
+        line-height: 1.35;
+      }
+
+      .section {
+        margin-top: 22px;
+      }
+
+      .section-head {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 18px;
+        margin-bottom: 12px;
+      }
+
+      .section-head h2 {
+        margin: 4px 0 0;
+        font-size: clamp(28px, 4vw, 48px);
+        line-height: 0.98;
+      }
+
+      .grid-2,
+      .skill-grid,
+      .artifact-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .pipeline {
+        display: grid;
+        gap: 12px;
+      }
+
+      .stage {
+        display: grid;
+        grid-template-columns: 76px minmax(0, 1fr);
+        gap: 14px;
+        padding: 16px;
+      }
+
+      .stage-number {
+        display: grid;
+        min-height: 100%;
+        place-items: center;
+        border-radius: 8px;
+        background: var(--ink);
+        color: var(--bg);
+        font-size: 24px;
+        font-weight: 900;
+      }
+
+      .stage h3,
+      .panel h3,
+      .skill-card h3,
+      .artifact h3,
+      .check-card h3 {
+        margin: 0;
+        font-size: 20px;
+        line-height: 1.1;
+      }
+
+      .stage p,
+      .panel p,
+      .skill-card p,
+      .artifact p,
+      .check-card p,
+      li {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      .stage p {
+        margin: 8px 0 0;
+      }
+
+      .stage ul,
+      .panel ul,
+      .skill-card ul,
+      .check-card ul {
+        display: grid;
+        gap: 7px;
+        margin: 12px 0 0;
+        padding-left: 18px;
+      }
+
+      .panel,
+      .skill-card,
+      .artifact,
+      .check-card {
+        padding: 18px;
+      }
+
+      .panel p:last-child,
+      .skill-card p:last-child,
+      .artifact p:last-child,
+      .check-card p:last-child {
+        margin-bottom: 0;
+      }
+
+      .artifact-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .artifact code,
+      .skill-card code,
+      .panel code {
+        display: block;
+        margin-top: 8px;
+        overflow-wrap: anywhere;
+        color: var(--accent);
+        font-size: 12px;
+        line-height: 1.45;
+      }
+
+      .check-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .timeline {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .timeline div {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel-2);
+        padding: 13px;
+      }
+
+      .timeline strong,
+      .timeline span {
+        display: block;
+      }
+
+      .timeline span {
+        margin-top: 6px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.45;
+      }
+
+      .footer {
+        margin-top: 26px;
+        border-top: 2px solid var(--ink);
+        padding-top: 16px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      @media (max-width: 900px) {
+        .hero,
+        .grid-2,
+        .skill-grid,
+        .artifact-grid,
+        .check-grid,
+        .timeline {
+          grid-template-columns: 1fr;
+        }
+
+        .topbar,
+        .section-head {
+          align-items: start;
+          flex-direction: column;
+        }
+
+        .status {
+          justify-content: flex-start;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .shell {
+          width: min(100% - 24px, 1180px);
+          padding-top: 18px;
+        }
+
+        .stage {
+          grid-template-columns: 1fr;
+        }
+
+        .stage-number {
+          min-height: 56px;
+          place-items: center start;
+          padding-left: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div class="brand">
+          <div class="mark">OS</div>
+          <div>
+            <strong>Private Creator Studio</strong>
+            <span>upneja.ai internal hub</span>
+          </div>
+        </div>
+        <div class="status">
+          <span class="pill good">Google gated</span>
+          <span class="pill accent">Ayush only</span>
+          <span class="pill">DNS pending</span>
+        </div>
+      </header>
+
+      <section class="hero">
+        <div>
+          <div class="eyebrow">What changed</div>
+          <h1>The creator workflow now has a private operating home.</h1>
+          <p>
+            This page documents the UX reskin system, the repeatable build-to-video process,
+            and the private gated site where future project artifacts should live.
+          </p>
+        </div>
+        <aside class="hero-panel" aria-label="Deployment summary">
+          <div>
+            <span class="card-label">Current live URL</span>
+            <strong>shortlist-site-two.vercel.app/creator-studio/</strong>
+          </div>
+          <div>
+            <span class="card-label">Target subdomain</span>
+            <strong>studio.upneja.ai</strong>
+          </div>
+          <div>
+            <span class="card-label">Allowed account</span>
+            <strong>ayushupneja@gmail.com</strong>
+          </div>
+        </aside>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Operating process</div>
+            <h2>Use the same six phases every time.</h2>
+          </div>
+          <span class="pill accent">Source: docs/creator-operating-process.md</span>
+        </div>
+        <div class="pipeline">
+          <article class="stage">
+            <div class="stage-number">01</div>
+            <div>
+              <h3>Build the app</h3>
+              <p>Ship the actual product journey before chasing aesthetics.</p>
+              <ul>
+                <li>Working app with run instructions.</li>
+                <li>Core user journey implemented end to end.</li>
+                <li>Safe seed data and known privacy or claim risks.</li>
+              </ul>
+            </div>
+          </article>
+          <article class="stage">
+            <div class="stage-number">02</div>
+            <div>
+              <h3>Research UX patterns and options</h3>
+              <p>Use the reskin skill to generate 10 creative directions before implementing a visual system.</p>
+              <ul>
+                <li>Infer journeys from code, docs, schema, git history, and screenshots.</li>
+                <li>Create rough wireframes and score each direction.</li>
+                <li>Choose the top direction before spending production time.</li>
+              </ul>
+            </div>
+          </article>
+          <article class="stage">
+            <div class="stage-number">03</div>
+            <div>
+              <h3>Build the better UX pattern</h3>
+              <p>Integrate the chosen visual and interaction model into the real app.</p>
+              <ul>
+                <li>Responsive production UI.</li>
+                <li>Recording-friendly first viewport and state changes.</li>
+                <li>Demo data staged for video capture.</li>
+              </ul>
+            </div>
+          </article>
+          <article class="stage">
+            <div class="stage-number">04</div>
+            <div>
+              <h3>Finalize and publish</h3>
+              <p>Make the app reliable, safe, and shareable before it becomes the video subject.</p>
+              <ul>
+                <li>Lint and build pass.</li>
+                <li>Clean-browser demo path verified.</li>
+                <li>No private data, unsafe claims, or credentials visible.</li>
+              </ul>
+            </div>
+          </article>
+          <article class="stage">
+            <div class="stage-number">05</div>
+            <div>
+              <h3>Script the video</h3>
+              <p>Turn the project into a proof-backed short-form story.</p>
+              <ul>
+                <li>Hook variants, script, shot list, and screen-recording plan.</li>
+                <li>B-roll, captions, platform notes, and follow-up ideas.</li>
+                <li>Claim and privacy gate before filming.</li>
+              </ul>
+            </div>
+          </article>
+          <article class="stage">
+            <div class="stage-number">06</div>
+            <div>
+              <h3>Upload final cut for AI review</h3>
+              <p>Review the exported video before publishing, then feed the learning back into the next build.</p>
+              <ul>
+                <li>First-frame clarity, retention risk, pacing, audio, and captions.</li>
+                <li>9:16 app-screen legibility and privacy safety.</li>
+                <li>Pass/fix decision plus post-publish metrics loop.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Skills installed or cleaned up</div>
+            <h2>The repeatable agent tools are now explicit.</h2>
+          </div>
+        </div>
+        <div class="skill-grid">
+          <article class="skill-card">
+            <span class="pill good">New</span>
+            <h3>Creative Reskin Studio</h3>
+            <p>
+              A Codex skill that audits a completed app, reconstructs user journeys,
+              creates 10 differentiated UX reskin directions, and ranks them for video-first implementation.
+            </p>
+            <ul>
+              <li>Includes journey extraction guidance.</li>
+              <li>Includes video-first UI rules and anti-slop rubric.</li>
+              <li>Includes a static wireframe-lab template.</li>
+            </ul>
+            <code>~/.codex/skills/creative-reskin-studio</code>
+          </article>
+          <article class="skill-card">
+            <span class="pill accent">Cleaned up</span>
+            <h3>Side Project Video Package</h3>
+            <p>
+              The previous placeholder skill now has a real workflow for turning a completed project
+              and chosen UX direction into hooks, scripts, shot lists, edit plans, and platform variants.
+            </p>
+            <ul>
+              <li>Uses Ayush's positioning and claim-safety model.</li>
+              <li>Can scaffold package folders and editor handoffs.</li>
+              <li>Now follows the selected reskin direction when one exists.</li>
+            </ul>
+            <code>~/.codex/skills/side-project-video-package</code>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Repo artifacts</div>
+            <h2>What was added to Creator OS.</h2>
+          </div>
+        </div>
+        <div class="artifact-grid">
+          <article class="artifact">
+            <h3>Process doc</h3>
+            <p>The source-of-truth markdown for the six-phase process.</p>
+            <code>/Users/upneja/Projects/reels/docs/creator-operating-process.md</code>
+          </article>
+          <article class="artifact">
+            <h3>Process data</h3>
+            <p>Structured data that powers the in-app Process page.</p>
+            <code>/Users/upneja/Projects/reels/src/data/creator-process.ts</code>
+          </article>
+          <article class="artifact">
+            <h3>Dashboard page</h3>
+            <p>The Creator OS navigation now includes a Process page for the repeatable operating model.</p>
+            <code>/Users/upneja/Projects/reels/src/components/CreatorDashboard.tsx</code>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Feedback pipeline</div>
+            <h2>The final cut should be reviewed before publishing.</h2>
+          </div>
+        </div>
+        <div class="check-grid">
+          <article class="check-card">
+            <h3>First frame</h3>
+            <p>Can a muted viewer understand the premise before scrolling?</p>
+          </article>
+          <article class="check-card">
+            <h3>Proof</h3>
+            <p>Does the video show the app working, not just describe the app?</p>
+          </article>
+          <article class="check-card">
+            <h3>Legibility</h3>
+            <p>Do app screens, captions, and overlays survive the 9:16 crop?</p>
+          </article>
+          <article class="check-card">
+            <h3>Pacing</h3>
+            <p>Are cuts fast enough to hold attention while still preserving comprehension?</p>
+          </article>
+          <article class="check-card">
+            <h3>Claims</h3>
+            <p>Are outcomes sourced, personal, or softened to accurate language?</p>
+          </article>
+          <article class="check-card">
+            <h3>Learning</h3>
+            <p>Can the posted result teach the next UX direction, hook, or app idea?</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">How new things go here</div>
+            <h2>Future project artifacts should be added as private routes.</h2>
+          </div>
+        </div>
+        <div class="grid-2">
+          <article class="panel">
+            <h3>Recommended route pattern</h3>
+            <p>
+              Keep the root as the internal index. Add each project, reskin readout, script package,
+              or final-cut review as a separate route with its own allowlist.
+            </p>
+            <ul>
+              <li><code>/creator-studio/</code> for this operating hub.</li>
+              <li><code>/project-name-reskin/</code> for UX options.</li>
+              <li><code>/project-name-video-package/</code> for scripts and shot lists.</li>
+              <li><code>/project-name-review/</code> for final-cut AI review notes.</li>
+            </ul>
+          </article>
+          <article class="panel">
+            <h3>Access rule</h3>
+            <p>
+              The `studio.upneja.ai` host is intended to be Ayush-only once DNS is added at Porkbun.
+              Individual private routes can still be shared with other Gmail accounts when a specific artifact needs review.
+            </p>
+            <ul>
+              <li>Default owner: ayushupneja@gmail.com.</li>
+              <li>Route-level sharing only when needed.</li>
+              <li>No public indexing, no unauthenticated static access.</li>
+              <li>DNS record needed: A `studio.upneja.ai` -> `76.76.21.21`.</li>
+              <li>OAuth callback needed after DNS resolves: `https://studio.upneja.ai/auth/callback`.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Verification log</div>
+            <h2>Checks run before publishing this hub.</h2>
+          </div>
+        </div>
+        <div class="timeline">
+          <div>
+            <strong>Skill validation</strong>
+            <span>`creative-reskin-studio` and `side-project-video-package` pass Codex skill validation.</span>
+          </div>
+          <div>
+            <strong>Creator OS checks</strong>
+            <span>`npm run lint` and `npm run build` pass in the Creator OS repo.</span>
+          </div>
+          <div>
+            <strong>Private route</strong>
+            <span>This artifact is copied into the gated Vercel OAuth project as `/creator-studio/`.</span>
+          </div>
+          <div>
+            <strong>Subdomain</strong>
+            <span>`studio.upneja.ai` is prepared in Vercel, but Porkbun DNS and Google OAuth callback approval are still pending.</span>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        Private internal documentation for Ayush Upneja. This page should stay Google-gated, noindexed,
+        and treated as the operating home for project-to-video work.
+      </footer>
+    </main>
+  </body>
+</html>

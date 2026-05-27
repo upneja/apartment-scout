@@ -1,0 +1,1757 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cartagena + Barú - Ayush + Sofia</title>
+  <link rel="icon" href="data:,">
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f7f8f5;
+      --surface: #ffffff;
+      --surface-2: #f0f4f0;
+      --ink: #15201d;
+      --muted: #66736e;
+      --line: #d9e0da;
+      --line-strong: #bac8c0;
+      --green: #004b43;
+      --green-2: #0f6a58;
+      --green-soft: #e3f0eb;
+      --terra: #b34f31;
+      --terra-soft: #f7e7df;
+      --sand: #efe7d8;
+      --gold: #9b6b16;
+      --red: #a43824;
+      --blue: #0d6784;
+      --shadow: 0 18px 50px rgba(21, 32, 29, .08);
+      --radius: 8px;
+      --radius-sm: 6px;
+      --sidebar: 96px;
+      --max: 1180px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+    }
+
+    body {
+      margin: 0;
+      background:
+        linear-gradient(180deg, rgba(227, 240, 235, .7), rgba(247, 248, 245, 0) 320px),
+        var(--bg);
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 1.5;
+      letter-spacing: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    button, input, summary {
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+    }
+
+    :focus-visible {
+      outline: 3px solid rgba(15, 106, 88, .34);
+      outline-offset: 3px;
+    }
+
+    .app {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: var(--sidebar) minmax(0, 1fr);
+    }
+
+    .side {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 16px 12px;
+      background: linear-gradient(180deg, #003f39, #012b27);
+      color: #fff;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: 24px;
+      z-index: 10;
+    }
+
+    .mark {
+      width: 52px;
+      height: 38px;
+      margin: 0 auto;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: var(--radius-sm);
+      background: rgba(255,255,255,.08);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 18px;
+      letter-spacing: .02em;
+    }
+
+    .side nav {
+      display: grid;
+      gap: 8px;
+      align-content: start;
+    }
+
+    .side a {
+      min-height: 48px;
+      padding: 8px 6px;
+      border-radius: var(--radius);
+      display: grid;
+      justify-items: center;
+      align-content: center;
+      gap: 4px;
+      color: rgba(255,255,255,.82);
+      font-size: 11px;
+      font-weight: 740;
+    }
+
+    .side a:hover,
+    .side a.active {
+      background: rgba(255,255,255,.14);
+      color: #fff;
+    }
+
+    .icon {
+      width: 21px;
+      height: 21px;
+      display: inline-grid;
+      place-items: center;
+      color: currentColor;
+    }
+
+    .icon svg {
+      width: 21px;
+      height: 21px;
+      stroke: currentColor;
+      stroke-width: 1.9;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .main {
+      min-width: 0;
+      display: grid;
+      grid-template-rows: auto 1fr;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 8;
+      min-height: 72px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(247, 248, 245, .92);
+      backdrop-filter: blur(18px);
+    }
+
+    .topbar-inner {
+      width: min(100% - 40px, var(--max));
+      margin: 0 auto;
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .trip-title {
+      min-width: 0;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .phase-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .phase-link {
+      min-height: 38px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      justify-content: center;
+      padding: 8px 12px;
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 830;
+      white-space: nowrap;
+    }
+
+    .phase-link.primary {
+      background: var(--green);
+      color: #fff;
+      border-color: var(--green);
+    }
+
+    .sync {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 760;
+      white-space: nowrap;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: #2f995d;
+      box-shadow: 0 0 0 4px rgba(47,153,93,.12);
+    }
+
+    .layout {
+      width: min(100% - 40px, var(--max));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      padding: 22px 0 96px;
+    }
+
+    .content {
+      min-width: 0;
+      display: grid;
+      gap: 28px;
+      align-content: start;
+    }
+
+    .content > section,
+    .hero-grid,
+    .action-strip,
+    .anchor-grid,
+    .panel,
+    .decision-list {
+      min-width: 0;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.22;
+      letter-spacing: 0;
+    }
+
+    p { margin: 0; }
+
+    .small {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .eyebrow {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 760;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .panel {
+      background: rgba(255,255,255,.9);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .pad { padding: 18px; }
+
+    .soft {
+      background: rgba(240,244,240,.82);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.18fr) minmax(0, .82fr);
+      gap: 12px;
+    }
+
+    .status-card {
+      min-height: 170px;
+      padding: 16px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      display: grid;
+      align-content: space-between;
+      gap: 14px;
+      box-shadow: 0 12px 30px rgba(21,32,29,.05);
+    }
+
+    .status-card.action {
+      border-color: rgba(179, 79, 49, .28);
+      background: linear-gradient(180deg, #fff, #fff8f4);
+    }
+
+    .assistant-brief {
+      display: grid;
+      grid-template-columns: minmax(0, 1.18fr) minmax(280px, .82fr);
+      overflow: hidden;
+    }
+
+    .brief-main,
+    .brief-side {
+      padding: 18px;
+      display: grid;
+      gap: 14px;
+      align-content: start;
+    }
+
+    .brief-main {
+      background: linear-gradient(180deg, #fff, #fff8f4);
+      border-right: 1px solid var(--line);
+    }
+
+    .brief-side {
+      background: rgba(255,255,255,.74);
+    }
+
+    .fact-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .fact-pill {
+      min-height: 32px;
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 9px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      background: rgba(240,244,240,.7);
+      font-size: 12px;
+      font-weight: 780;
+      color: #33413d;
+    }
+
+    a.fact-pill {
+      color: var(--green);
+      border-color: rgba(15,106,88,.24);
+      background: rgba(227,240,235,.72);
+    }
+
+    .prepared-list {
+      display: grid;
+      gap: 9px;
+    }
+
+    .prepared-item {
+      display: grid;
+      grid-template-columns: 25px minmax(0, 1fr);
+      gap: 9px;
+      align-items: start;
+      color: #33413d;
+      font-size: 13px;
+    }
+
+    .prepared-item .status-dot {
+      width: 22px;
+      height: 22px;
+    }
+
+    .link-drawer {
+      margin-top: 10px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.76);
+    }
+
+    .link-drawer summary,
+    .row-actions summary {
+      cursor: pointer;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 840;
+    }
+
+    .link-drawer summary {
+      min-height: 42px;
+      display: flex;
+      align-items: center;
+      padding: 0 14px;
+    }
+
+    .quiet-link-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+      padding: 0 14px 14px;
+    }
+
+    .quiet-link {
+      min-height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 7px 9px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      color: #33413d;
+      font-size: 12px;
+      font-weight: 780;
+    }
+
+    .action-strip {
+      margin-top: 12px;
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .action-chip {
+      min-height: 48px;
+      padding: 9px 10px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      display: grid;
+      align-content: center;
+      gap: 2px;
+      box-shadow: 0 8px 20px rgba(21,32,29,.04);
+    }
+
+    .action-chip:hover,
+    .anchor-card:hover {
+      border-color: rgba(15,106,88,.35);
+      box-shadow: 0 10px 24px rgba(21,32,29,.08);
+    }
+
+    .action-chip strong {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-size: 13px;
+      line-height: 1.15;
+    }
+
+    .action-chip small {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 740;
+    }
+
+    .action-chip.primary {
+      background: var(--green);
+      color: #fff;
+      border-color: var(--green);
+    }
+
+    .action-chip.primary small { color: rgba(255,255,255,.78); }
+
+    .anchor-grid {
+      margin-top: 12px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .anchor-card {
+      min-height: 76px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      background: rgba(255,255,255,.88);
+      display: grid;
+      align-content: start;
+      gap: 3px;
+    }
+
+    .anchor-label {
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
+    .anchor-value {
+      font-size: 16px;
+      line-height: 1.16;
+      font-weight: 860;
+    }
+
+    .anchor-note {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.25;
+    }
+
+    .metric {
+      font-size: 48px;
+      line-height: .9;
+      font-weight: 860;
+      letter-spacing: 0;
+    }
+
+    .metric span {
+      font-size: 15px;
+      color: var(--muted);
+      font-weight: 760;
+    }
+
+    .thumb {
+      aspect-ratio: 16 / 9;
+      border-radius: 7px;
+      overflow: hidden;
+      background: #dfe8e3;
+      margin-bottom: 9px;
+    }
+
+    .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .btn {
+      min-height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 9px 13px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(21,32,29,.12);
+      background: var(--green);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 820;
+      line-height: 1.1;
+      text-align: center;
+    }
+
+    .btn.secondary {
+      background: var(--surface);
+      color: var(--ink);
+      border-color: var(--line-strong);
+    }
+
+    .btn.ghost {
+      background: transparent;
+      color: var(--green);
+      border-color: transparent;
+      padding-inline: 4px;
+    }
+
+    .inline-link {
+      color: var(--green);
+      font-weight: 830;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 820;
+      white-space: nowrap;
+      line-height: 1.2;
+    }
+
+    .badge.good { background: var(--green-soft); border-color: rgba(15,106,88,.22); color: var(--green-2); }
+    .badge.warn { background: var(--terra-soft); border-color: rgba(179,79,49,.24); color: var(--terra); }
+    .badge.book { background: #fff4d9; border-color: rgba(155,107,22,.2); color: var(--gold); }
+    .badge.blue { background: #e6f3f6; border-color: rgba(13,103,132,.2); color: var(--blue); }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 14px;
+    }
+
+    .decision-list {
+      display: grid;
+    }
+
+    .decision-row {
+      display: grid;
+      grid-template-columns: 32px minmax(0, 1.05fr) minmax(0, 1.1fr) auto auto;
+      gap: 12px;
+      align-items: center;
+      padding: 13px 16px;
+      border-top: 1px solid var(--line);
+      min-height: 76px;
+      min-width: 0;
+    }
+
+    .decision-row:first-child { border-top: 0; }
+
+    .row-actions {
+      min-width: 94px;
+    }
+
+    .row-actions summary {
+      min-height: 34px;
+      display: inline-flex;
+      align-items: center;
+      list-style-position: inside;
+    }
+
+    .row-actions .btn-row {
+      margin-top: 8px;
+      justify-content: flex-start;
+    }
+
+    .row-actions .btn {
+      min-height: 34px;
+      padding: 7px 10px;
+      font-size: 12px;
+    }
+
+    .check {
+      width: 22px;
+      height: 22px;
+      accent-color: var(--green);
+    }
+
+    .row-title {
+      font-weight: 830;
+      line-height: 1.2;
+    }
+
+    .decision-row > *,
+    .status-card > *,
+    .section-head > * {
+      min-width: 0;
+    }
+
+    .row-sub {
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .status-dot {
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      background: var(--surface-2);
+      color: var(--green);
+    }
+
+    .status-dot svg {
+      width: 17px;
+      height: 17px;
+      stroke: currentColor;
+      stroke-width: 1.9;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .tabbar {
+      display: inline-flex;
+      gap: 4px;
+      padding: 3px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+    }
+
+    .tabbar button {
+      min-height: 34px;
+      padding: 7px 12px;
+      border-radius: 6px;
+      background: transparent;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 820;
+    }
+
+    .tabbar button.active {
+      background: var(--green);
+      color: #fff;
+    }
+
+    .day-track {
+      display: grid;
+      grid-template-columns: repeat(9, minmax(154px, 1fr));
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: thin;
+    }
+
+    .day-card {
+      min-height: 318px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: grid;
+      grid-template-rows: auto 112px 1fr;
+    }
+
+    .day-card.city { border-top: 4px solid var(--blue); }
+    .day-card.beach { border-top: 4px solid var(--green-2); }
+    .day-card.flight { border-top: 4px solid var(--terra); }
+
+    .day-card.today {
+      border-color: rgba(15,106,88,.45);
+      box-shadow: 0 0 0 3px rgba(15,106,88,.12), 0 16px 34px rgba(21,32,29,.1);
+    }
+
+    .day-top {
+      padding: 11px 12px 8px;
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 820;
+      text-transform: uppercase;
+    }
+
+    .day-card img {
+      width: 100%;
+      height: 112px;
+      object-fit: cover;
+      background: #dfe8e3;
+    }
+
+    .day-body {
+      padding: 12px;
+      display: grid;
+      gap: 9px;
+      align-content: start;
+    }
+
+    .day-body h3 { font-size: 14px; }
+
+    .micro-list {
+      margin: 0;
+      padding-left: 18px;
+      color: #33413d;
+      font-size: 13px;
+    }
+
+    .micro-list li { margin: 0 0 5px; }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .three-col {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .four-col {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .wallet-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .wallet-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 16px;
+      display: grid;
+      gap: 12px;
+      align-content: start;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: 104px 1fr;
+      gap: 7px 12px;
+      margin: 0;
+      font-size: 13px;
+    }
+
+    .detail-grid dt {
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .detail-grid dd {
+      margin: 0;
+      min-width: 0;
+    }
+
+    details {
+      border-top: 1px solid var(--line);
+      padding-top: 10px;
+    }
+
+    details summary {
+      min-height: 32px;
+      cursor: pointer;
+      color: var(--green);
+      font-weight: 830;
+      font-size: 13px;
+    }
+
+    .inside {
+      color: var(--muted);
+      font-size: 13px;
+      padding: 4px 0 0;
+    }
+
+    .media-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: grid;
+      grid-template-rows: 148px 1fr;
+    }
+
+    .media-card img {
+      width: 100%;
+      height: 148px;
+      object-fit: cover;
+      background: #dfe8e3;
+    }
+
+    .media-body {
+      padding: 14px;
+      display: grid;
+      gap: 8px;
+      align-content: start;
+    }
+
+    .route-card {
+      padding: 16px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      display: grid;
+      gap: 10px;
+    }
+
+    .route-steps {
+      margin: 0;
+      padding-left: 18px;
+      color: #33413d;
+      font-size: 13px;
+    }
+
+    .route-steps li { margin-bottom: 4px; }
+
+    .mobile-nav {
+      display: none;
+    }
+
+    .source-list {
+      margin: 0;
+      padding-left: 20px;
+      color: #33413d;
+      font-size: 13px;
+    }
+
+    .source-list li { margin-bottom: 8px; }
+
+    .source-list a {
+      color: var(--green);
+      font-weight: 780;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    footer {
+      color: var(--muted);
+      font-size: 12px;
+      padding: 0 0 40px;
+    }
+
+    @media (max-width: 1180px) {
+      .app { grid-template-columns: 1fr; }
+      .side { display: none; }
+      .layout { grid-template-columns: 1fr; }
+      .hero-grid,
+      .assistant-brief { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .status-card.action { grid-column: auto; }
+      .action-strip { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .wallet-grid, .three-col, .four-col { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 760px) {
+      body {
+        padding-bottom: 74px;
+      }
+
+      .topbar {
+        position: static;
+      }
+
+      .topbar-inner {
+        width: min(100% - 22px, var(--max));
+        min-height: 76px;
+        align-items: flex-start;
+        padding: 12px 0;
+        flex-wrap: wrap;
+      }
+
+      .sync { display: none; }
+      .mobile-hide { display: none; }
+
+      h1 { font-size: 18px; }
+
+      .phase-links {
+        width: 100%;
+        justify-content: flex-start;
+      }
+
+      .layout {
+        width: min(100% - 22px, var(--max));
+        padding: 12px 0 40px;
+      }
+
+      .content {
+        gap: 22px;
+      }
+
+      .hero-grid,
+      .assistant-brief,
+      .split,
+      .two-col,
+      .three-col,
+      .four-col,
+      .wallet-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .status-card.action { grid-column: auto; }
+
+      .status-card {
+        min-height: 0;
+      }
+
+      .brief-main {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .brief-side {
+        padding-top: 14px;
+      }
+
+      .quiet-link-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .action-strip {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .ground-focus,
+      .anchor-grid {
+        display: none;
+      }
+
+      .decision-row {
+        grid-template-columns: 28px 1fr;
+      }
+
+      .decision-row > .small,
+      .decision-row > .badge,
+      .decision-row > .btn,
+      .decision-row > .row-actions {
+        grid-column: 2;
+      }
+
+      .day-track {
+        grid-template-columns: 1fr;
+        overflow: visible;
+      }
+
+      .day-card {
+        min-height: 0;
+        grid-template-rows: auto 176px 1fr;
+      }
+
+      .day-card img { height: 176px; }
+
+      .section-head {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .mobile-nav {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 20;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        border-top: 1px solid var(--line);
+        background: rgba(255,255,255,.96);
+        backdrop-filter: blur(18px);
+      }
+
+      .mobile-nav a {
+        min-height: 64px;
+        padding: 7px 4px;
+        display: grid;
+        place-items: center;
+        gap: 3px;
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 780;
+      }
+
+      .mobile-nav .icon svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside class="side" aria-label="Primary navigation">
+      <div class="mark">A&amp;S</div>
+      <nav>
+        <a class="active" href="#command"><span class="icon"><svg viewBox="0 0 24 24"><path d="M4 4h7v7H4zM13 4h7v5h-7zM13 11h7v9h-7zM4 13h7v7H4z"/></svg></span>Home</a>
+        <a href="#decisions"><span class="icon"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>To-do</a>
+        <a href="#itinerary"><span class="icon"><svg viewBox="0 0 24 24"><path d="M8 2v4M16 2v4M3 10h18"/><rect x="3" y="4" width="18" height="18" rx="2"/></svg></span>Days</a>
+        <a href="#maps"><span class="icon"><svg viewBox="0 0 24 24"><path d="M9 18l-6 3V6l6-3 6 3 6-3v15l-6 3-6-3z"/><path d="M9 3v15M15 6v15"/></svg></span>Routes</a>
+        <a href="#places"><span class="icon"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span>Places</a>
+        <a href="#wallet"><span class="icon"><svg viewBox="0 0 24 24"><path d="M4 7h16v13H4z"/><path d="M4 7l2-4h12l2 4"/><path d="M8 12h8"/></svg></span>Wallet</a>
+        <a href="#runbook"><span class="icon"><svg viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13"/><path d="M3 6h.01M3 12h.01M3 18h.01"/></svg></span>Prep</a>
+      </nav>
+    </aside>
+
+    <div class="main">
+      <header class="topbar">
+        <div class="topbar-inner">
+          <div class="trip-title">
+            <h1><span class="mobile-hide">Ayush &amp; Sofia · </span>Cartagena + Sofitel Barú</h1>
+            <div class="subtitle">Jun 27-Jul 5, 2026 · 4 city + 4 beach nights<span class="mobile-hide"> · private trip page</span></div>
+          </div>
+          <div class="sync"><span class="dot"></span><span>Draft + guide ready</span></div>
+        </div>
+      </header>
+
+      <div class="layout">
+        <main class="content">
+          <section id="command">
+            <div class="section-head">
+              <div>
+                <span class="eyebrow">Now</span>
+                <h2>Cartagena + Barú</h2>
+              </div>
+              <span class="badge good" id="phaseBadge">Before we go</span>
+            </div>
+
+            <div class="assistant-brief panel">
+              <article class="brief-main">
+                <div>
+                  <span class="eyebrow">Up next</span>
+                  <h3>Send the Sofitel transfer note</h3>
+                  <p class="small" style="margin-top:8px;">I drafted the email in Gmail. Once this is sent, the main loose piece is getting from the city to Barú, then Barú to CTG on flight day.</p>
+                </div>
+                <div class="btn-row">
+                  <a class="btn" href="https://mail.google.com/mail/u/0/#drafts">Open Gmail drafts</a>
+                </div>
+              </article>
+
+              <aside class="brief-side">
+                <div>
+                  <span class="eyebrow">Notes</span>
+                  <div class="prepared-list">
+                    <div class="prepared-item"><span class="status-dot"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span><span>Flights, Airbnb, and Sofitel are booked.</span></div>
+                    <div class="prepared-item"><span class="status-dot"><svg viewBox="0 0 24 24"><path d="M12 5v7l5 3"/></svg></span><span>Sofitel transfer email is drafted.</span></div>
+                    <div class="prepared-item"><span class="status-dot"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5v14"/></svg></span><span>Next tables: Alma, Townhouse, Humo.</span></div>
+                    <div class="prepared-item"><span class="status-dot"><svg viewBox="0 0 24 24"><path d="M3 12h18"/><path d="M12 3v18"/></svg></span><span>Keep an eye on Carmen and Celele.</span></div>
+                  </div>
+                </div>
+                <div class="fact-line">
+                  <span class="fact-pill" id="countdownPill">47 days until JFK -> CTG</span>
+                  <span class="fact-pill">City Jun 27-Jul 1</span>
+                  <span class="fact-pill">Sofitel Jul 1-Jul 5</span>
+                  <a class="fact-pill" href="https://docs.google.com/document/d/1YLsS78CFrkHEpSCIXuG1nFmwgKnjVeq-fJJRgqyAaj8">Offline doc</a>
+                </div>
+              </aside>
+            </div>
+
+            <details class="link-drawer">
+              <summary>Other links</summary>
+              <div class="quiet-link-grid">
+                <a class="quiet-link" href="https://alma.precompro.com/select/">Book Alma <span>›</span></a>
+                <a class="quiet-link" href="https://www.exploretock.com/townhousecartagena/experience/394553/rooftop-reservation">Townhouse <span>›</span></a>
+                <a class="quiet-link" href="https://humo.precompro.com/">Book Humo <span>›</span></a>
+                <a class="quiet-link" href="https://carmen-cartagena.meitre.com/">Check Carmen <span>›</span></a>
+                <a class="quiet-link" href="https://maps.app.goo.gl/hFrW49YsFCBpdP9C8">Saved list <span>›</span></a>
+                <a class="quiet-link" href="https://portal.migracioncolombia.gov.co/tramites-y-servicios/aplicativos/checkmig">CheckMig <span>›</span></a>
+                <a class="quiet-link" href="https://www.juanballena.com/products/private-transfer-to-baru-from-cartagena">Juan Ballena <span>›</span></a>
+                <a class="quiet-link" href="#wallet">Wallet <span>›</span></a>
+              </div>
+            </details>
+          </section>
+
+          <section id="decisions">
+            <div class="section-head">
+              <div>
+                <span class="eyebrow">To-do</span>
+                <h2>Things to settle</h2>
+              </div>
+              <span class="badge warn">6 left</span>
+            </div>
+
+            <div class="panel decision-list">
+              <div class="decision-row">
+                <input class="check" type="checkbox" data-key="sofitel-transfer">
+                <div>
+                  <div class="row-title">Choose and book Sofitel Barú transfer</div>
+                  <div class="row-sub">City Airbnb -> Sofitel on Jul 1, Sofitel -> CTG on Jul 5.</div>
+                </div>
+                <div class="small">Do this first: Barú is far enough from the city, and Jul 5 needs a real airport buffer.</div>
+                <span class="badge warn">first</span>
+                <details class="row-actions">
+                  <summary>notes</summary>
+                  <div class="btn-row">
+                    <a class="btn secondary" href="https://mail.google.com/mail/u/0/#drafts">Gmail draft</a>
+                    <a class="btn secondary" href="#transfers">Transfer notes</a>
+                  </div>
+                </details>
+              </div>
+
+              <div class="decision-row">
+                <input class="check" type="checkbox" data-key="alma">
+                <div>
+                  <div class="row-title">Reserve Alma for Tue Jun 30 at 7:30 PM</div>
+                  <div class="row-sub">Precompro showed 7:30 PM available for 2; 8:00/8:30 were not shown.</div>
+                </div>
+                <div class="small">Best final city dinner before Alquímico. Polished but not as release-dependent as Carmen.</div>
+                <span class="badge good">book</span>
+                <details class="row-actions">
+                  <summary>notes</summary>
+                  <div class="btn-row"><a class="btn secondary" href="https://alma.precompro.com/select/">Book Alma</a></div>
+                </details>
+              </div>
+
+              <div class="decision-row">
+                <input class="check" type="checkbox" data-key="townhouse">
+                <div>
+                  <div class="row-title">Book Townhouse Rooftop for Sun Jun 28 at 5:15 PM</div>
+                  <div class="row-sub">Tock showed 5:15 and 5:30 PM for 2 with $10/person deposit.</div>
+                </div>
+                <div class="small">Creates a clean sunset bridge between La Cevichería lunch and Carmen watchlist dinner.</div>
+                <span class="badge good">book</span>
+                <details class="row-actions">
+                  <summary>notes</summary>
+                  <div class="btn-row"><a class="btn secondary" href="https://www.exploretock.com/townhousecartagena/experience/394553/rooftop-reservation">Book Townhouse</a></div>
+                </details>
+              </div>
+
+              <div class="decision-row">
+                <input class="check" type="checkbox" data-key="humo">
+                <div>
+                  <div class="row-title">Reserve Humo for Thu Jul 2 at 8:00 PM</div>
+                  <div class="row-sub">Humo Precompro showed 6:00-9:00 PM dinner slots for 2.</div>
+                </div>
+                <div class="small">This is the one structured resort dinner worth locking early.</div>
+                <span class="badge good">book</span>
+                <details class="row-actions">
+                  <summary>notes</summary>
+                  <div class="btn-row"><a class="btn secondary" href="https://humo.precompro.com/">Book Humo</a></div>
+                </details>
+              </div>
+
+              <div class="decision-row">
+                <input class="check" type="checkbox" data-key="carmen">
+                <div>
+                  <div class="row-title">Watch Carmen reservation release for Sun Jun 28</div>
+                  <div class="row-sub">May 11 check: June calendar disabled in Meitre, so this looked unreleased, not sold out.</div>
+                </div>
+                <div class="small">Primary fine-dining target. If it opens, book 8:15/8:30 PM.</div>
+                <span class="badge book">watch</span>
+                <details class="row-actions">
+                  <summary>notes</summary>
+                  <div class="btn-row"><a class="btn secondary" href="https://carmen-cartagena.meitre.com/">Check Carmen</a></div>
+                </details>
+              </div>
+
+              <div class="decision-row">
+                <input class="check" type="checkbox" data-key="celele">
+                <div>
+                  <div class="row-title">Confirm Celele directly on WhatsApp</div>
+                  <div class="row-sub">Mesa247 showed remodel/popup language through Jun 20; Jun 29 selection did not reveal times.</div>
+                </div>
+                <div class="small">Keep as Jun 29 dinner only if they confirm normal service and a good time.</div>
+                <span class="badge book">message</span>
+                <details class="row-actions">
+                  <summary>notes</summary>
+                  <div class="btn-row"><a class="btn secondary" href="https://wa.me/573017420389">WhatsApp</a></div>
+                </details>
+              </div>
+            </div>
+          </section>
+
+          <section id="itinerary">
+            <div class="section-head">
+              <div>
+                <span class="eyebrow">Days</span>
+                <h2>The shape of the week</h2>
+              </div>
+              <div class="tabbar" role="group" aria-label="Itinerary view">
+                <button type="button" class="active" data-view="day">By day</button>
+                <button type="button" data-view="stay">By stay</button>
+              </div>
+            </div>
+
+            <div class="day-track" aria-label="Day-by-day itinerary">
+              <article class="day-card city" data-trip-day="2026-06-27">
+                <div class="day-top"><span>Sat Jun 27</span><span>Day 1</span></div>
+                <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Plaza%20de%20la%20Sant%C3%ADsima%20Trinidad%2C%20Cartagena.jpg?width=1000" alt="Plaza Trinidad in Getsemani">
+                <div class="day-body">
+                  <div class="badge blue">Arrival + Getsemaní</div>
+                  <h3>Land, check in, easy first-night loop</h3>
+                  <ul class="micro-list">
+                    <li>JetBlue lands CTG 1:23 PM.</li>
+                    <li>Airbnb check-in after 3:00 PM.</li>
+                    <li>Centenario Park -> Plaza Trinidad -> Demente.</li>
+                  </ul>
+                  <a class="btn secondary" href="https://www.google.com/maps/dir/?api=1&amp;origin=10.4231521,-75.5480044&amp;destination=Alquimico%20Cartagena&amp;waypoints=Centenario%20Park%20Cartagena%7CPlaza%20de%20la%20Trinidad%20Cartagena%7CDemente%20Cartagena&amp;travelmode=walking">Open route</a>
+                </div>
+              </article>
+
+              <article class="day-card city" data-trip-day="2026-06-28">
+                <div class="day-top"><span>Sun Jun 28</span><span>Day 2</span></div>
+                <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Cartagena%20skyline%20from%20the%20city%20walls.JPG?width=1000" alt="Cartagena city walls">
+                <div class="day-body">
+                  <div class="badge warn">Reservation day</div>
+                  <h3>Walls, La Cevichería, rooftop, Carmen if released</h3>
+                  <ul class="micro-list">
+                    <li>Walls + Las Bóvedas early.</li>
+                    <li>La Cevichería lunch around 12:30.</li>
+                    <li>Townhouse 5:15 PM; Carmen watchlist dinner.</li>
+                  </ul>
+                  <a class="btn secondary" href="https://www.google.com/maps/dir/?api=1&amp;origin=10.4231521,-75.5480044&amp;destination=Carmen%20Cartagena&amp;waypoints=Las%20Bovedas%20Cartagena%7CLa%20Cevicheria%20Cartagena%7CPlaza%20Santo%20Domingo%20Cartagena%7CTownhouse%20Rooftop%20Cartagena&amp;travelmode=walking">Open route</a>
+                </div>
+              </article>
+
+              <article class="day-card city" data-trip-day="2026-06-29">
+                <div class="day-top"><span>Mon Jun 29</span><span>Day 3</span></div>
+                <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Castillo%20San%20Felipe%20de%20Barajas%20%2840012933001%29.jpg?width=1000" alt="Castillo San Felipe">
+                <div class="day-body">
+                  <div class="badge blue">History + cocktails</div>
+                  <h3>Castillo San Felipe, plazas, Celele if confirmed</h3>
+                  <ul class="micro-list">
+                    <li>Fort at 8:15 AM before heat.</li>
+                    <li>Centenario Park + San Pedro Claver.</li>
+                    <li>El Barón cocktails; Celele manual confirm.</li>
+                  </ul>
+                  <a class="btn secondary" href="https://www.google.com/maps/dir/?api=1&amp;origin=10.4231521,-75.5480044&amp;destination=El%20Baron%20Cartagena&amp;waypoints=Castillo%20San%20Felipe%20de%20Barajas%7CCentenario%20Park%20Cartagena%7CPlaza%20San%20Pedro%20Claver%20Cartagena&amp;travelmode=walking">Open route</a>
+                </div>
+              </article>
+
+              <article class="day-card city" data-trip-day="2026-06-30">
+                <div class="day-top"><span>Tue Jun 30</span><span>Day 4</span></div>
+                <img src="https://hotelcasasanagustin.com/wp-content/uploads/2024/09/CevicheEljach-7207.png" alt="Alma ceviche">
+                <div class="day-body">
+                  <div class="badge good">Open city day</div>
+                  <h3>Loose final city day, Alma, Alquímico</h3>
+                  <ul class="micro-list">
+                    <li>Sleep in, side streets, shopping, photos.</li>
+                    <li>Alma 7:30 PM available.</li>
+                    <li>Alquímico after dinner; expect lines.</li>
+                  </ul>
+                  <a class="btn secondary" href="https://www.google.com/maps/dir/?api=1&amp;origin=10.4231521,-75.5480044&amp;destination=Alquimico%20Cartagena&amp;waypoints=Alma%20Cartagena&amp;travelmode=walking">Open route</a>
+                </div>
+              </article>
+
+              <article class="day-card beach" data-trip-day="2026-07-01">
+                <div class="day-top"><span>Wed Jul 1</span><span>Day 5</span></div>
+                <img src="https://m.ahstatic.com/is/image/accorhotels/aja_p_6334-43:16by9?fmt=jpg&amp;wid=640&amp;hei=360&amp;qlt=80" alt="Sofitel restaurant">
+                <div class="day-body">
+                  <div class="badge warn">Transfer</div>
+                  <h3>Move from city mode to Sofitel Barú</h3>
+                  <ul class="micro-list">
+                    <li>Airbnb checkout by 11:00 AM.</li>
+                    <li>Pickup target around 11:15 AM.</li>
+                    <li>Ask FHR early check-in / upgrade.</li>
+                  </ul>
+                  <a class="btn secondary" href="#transfers">Transfer panel</a>
+                </div>
+              </article>
+
+              <article class="day-card beach" data-trip-day="2026-07-02">
+                <div class="day-top"><span>Thu Jul 2</span><span>Day 6</span></div>
+                <img src="https://m.ahstatic.com/is/image/accorhotels/aja_p_6089-61%3A4by3?dpr=on%2C1.5&amp;fmt=jpg&amp;hei=420&amp;icc=sRGB&amp;iccEmbed=true&amp;op_usm=1.75%2C0.3%2C2%2C0&amp;qlt=80&amp;resMode=sharp2&amp;wid=640" alt="Sofitel Baru pool">
+                <div class="day-body">
+                  <div class="badge good">Beach first</div>
+                  <h3>First full resort day: do almost nothing</h3>
+                  <ul class="micro-list">
+                    <li>FHR breakfast, beach, pool.</li>
+                    <li>La Pérgola or beach bar at sunset.</li>
+                    <li>Humo 8:00 PM dinner target.</li>
+                  </ul>
+                  <a class="btn secondary" href="https://humo.precompro.com/">Book Humo</a>
+                </div>
+              </article>
+
+              <article class="day-card beach" data-trip-day="2026-07-03">
+                <div class="day-top"><span>Fri Jul 3</span><span>Day 7</span></div>
+                <img src="https://aviarionacional.co/wp-content/uploads/2023/05/aviario2.jpg" alt="Toucan at Aviario Nacional">
+                <div class="day-body">
+                  <div class="badge blue">Optional outing</div>
+                  <h3>Aviario Nacional or no-plan resort day</h3>
+                  <ul class="micro-list">
+                    <li>Aviario only if you want one outing.</li>
+                    <li>Bahía lunch/dinner slots were open.</li>
+                    <li>Otherwise keep pool, spa, reading.</li>
+                  </ul>
+                  <a class="btn secondary" href="https://aviarionacional.co/preguntas-frecuentes/">Aviario FAQ</a>
+                </div>
+              </article>
+
+              <article class="day-card beach" data-trip-day="2026-07-04">
+                <div class="day-top"><span>Sat Jul 4</span><span>Day 8</span></div>
+                <img src="https://m.ahstatic.com/is/image/accorhotels/aja_p_6338-49:16by9?fmt=jpg&amp;wid=640&amp;hei=360&amp;qlt=80" alt="Sofitel Baru beach">
+                <div class="day-body">
+                  <div class="badge good">Final beach day</div>
+                  <h3>Keep the last full day intentionally empty</h3>
+                  <ul class="micro-list">
+                    <li>Breakfast + beach loungers early.</li>
+                    <li>Pool, spa, nap.</li>
+                    <li>Sunset drinks, repeat best dinner.</li>
+                  </ul>
+                  <a class="btn secondary" href="#places">Food ideas</a>
+                </div>
+              </article>
+
+              <article class="day-card flight" data-trip-day="2026-07-05">
+                <div class="day-top"><span>Sun Jul 5</span><span>Day 9</span></div>
+                <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Cartagena%20skyline%20from%20the%20city%20walls.JPG?width=1000" alt="Cartagena skyline">
+                <div class="day-body">
+                  <div class="badge warn">Departure</div>
+                  <h3>Leave Barú with a real airport buffer</h3>
+                  <ul class="micro-list">
+                    <li>Breakfast, settle FHR credit.</li>
+                    <li>Depart Sofitel around 10:15 AM.</li>
+                    <li>CTG target 12:15 PM for 2:55 PM flight.</li>
+                  </ul>
+                  <a class="btn secondary" href="#wallet">Flight details</a>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section id="maps">
+            <div class="section-head">
+              <div>
+                <span class="eyebrow">Routes</span>
+                <h2>Walks + Barú transfer</h2>
+              </div>
+              <a class="btn secondary" href="https://maps.app.goo.gl/hFrW49YsFCBpdP9C8">Saved list</a>
+            </div>
+
+            <div class="two-col">
+              <article class="route-card">
+                <span class="badge blue">Arrival night</span>
+                <h3>Getsemaní first-night loop</h3>
+                <ol class="route-steps">
+                  <li>Airbnb near Torre del Reloj / La Matuna.</li>
+                  <li>Centenario Park.</li>
+                  <li>Plaza Trinidad.</li>
+                  <li>Demente.</li>
+                  <li>Optional Alquímico.</li>
+                </ol>
+                <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;origin=10.4231521,-75.5480044&amp;destination=Alquimico%20Cartagena&amp;waypoints=Centenario%20Park%20Cartagena%7CPlaza%20de%20la%20Trinidad%20Cartagena%7CDemente%20Cartagena&amp;travelmode=walking">Open walking route</a>
+              </article>
+
+              <article class="route-card">
+                <span class="badge blue">Food walk</span>
+                <h3>Walled City: walls, ceviche, rooftop, Carmen</h3>
+                <ol class="route-steps">
+                  <li>Airbnb / Torre del Reloj.</li>
+                  <li>Las Bóvedas and walls early.</li>
+                  <li>La Cevichería lunch.</li>
+                  <li>Townhouse Rooftop 5:15 PM.</li>
+                  <li>Carmen if released.</li>
+                </ol>
+                <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;origin=10.4231521,-75.5480044&amp;destination=Carmen%20Cartagena&amp;waypoints=Las%20Bovedas%20Cartagena%7CLa%20Cevicheria%20Cartagena%7CPlaza%20Santo%20Domingo%20Cartagena%7CTownhouse%20Rooftop%20Cartagena&amp;travelmode=walking">Open walking route</a>
+              </article>
+
+              <article class="route-card">
+                <span class="badge warn">Heat-sensitive</span>
+                <h3>San Felipe to San Pedro Claver</h3>
+                <ol class="route-steps">
+                  <li>Take a taxi to Castillo San Felipe if hot.</li>
+                  <li>Walk or ride back through Centenario Park.</li>
+                  <li>Plaza San Pedro Claver.</li>
+                  <li>El Barón cocktails.</li>
+                </ol>
+                <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;origin=10.4231521,-75.5480044&amp;destination=El%20Baron%20Cartagena&amp;waypoints=Castillo%20San%20Felipe%20de%20Barajas%7CCentenario%20Park%20Cartagena%7CPlaza%20San%20Pedro%20Claver%20Cartagena&amp;travelmode=walking">Open route</a>
+              </article>
+
+              <article class="route-card" id="transfers">
+                <span class="badge warn">Barú transfer</span>
+                <h3>Sofitel Barú options</h3>
+                <p class="small">Best practical choice: hotel-arranged or vetted private car with luggage unless Sofitel confirms a clean catamaran schedule, luggage handling, pier pickup, and weather fallback.</p>
+                <ol class="route-steps">
+                  <li>Sofitel car: official accountability, reported Feb 2026 clue COP 390k one-way for up to 3.</li>
+                  <li>Hotel boat/catamaran: prettier, faster water time, more schedule/weather dependencies.</li>
+                  <li>Juan Ballena private transfer: listed from US$97, includes Sofitel Calablanca destination.</li>
+                </ol>
+                <div class="btn-row">
+                  <a class="btn" href="https://mail.google.com/mail/u/0/#drafts">Open Gmail draft</a>
+                  <a class="btn secondary" href="https://www.juanballena.com/products/private-transfer-to-baru-from-cartagena">Juan Ballena</a>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section id="places">
+            <div class="section-head">
+              <div>
+                <span class="eyebrow">Places</span>
+                <h2>Photos + orders</h2>
+              </div>
+              <span class="badge blue">food + places</span>
+            </div>
+
+            <div class="four-col">
+              <article class="media-card">
+                <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Galeria%20de%20las%20Bovedas%2C%20Cartagena%2C%20Colombia%20%2824051804429%29.jpg?width=1000" alt="Las Bovedas yellow arcades">
+                <div class="media-body">
+                  <span class="badge blue">Las Bóvedas</span>
+                  <h3>Yellow arcades before heat</h3>
+                  <p class="small">Quick wall-side visual stop before La Cevichería, not a long shopping block.</p>
+                </div>
+              </article>
+
+              <article class="media-card">
+                <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Plaza%20de%20San%20Pedro%20Claver%2C%20Cartagena%2001.jpg?width=1000" alt="San Pedro Claver plaza">
+                <div class="media-body">
+                  <span class="badge blue">San Pedro Claver</span>
+                  <h3>Plaza reset before El Barón</h3>
+                  <p class="small">Good pause point: church facade, sculptures, shade, then cocktails.</p>
+                </div>
+              </article>
+
+              <article class="media-card">
+                <img src="https://carmencartagena.com/wp-content/uploads/2023/07/FOTO-3-scaled.jpg" alt="Carmen Cartagena dish">
+                <div class="media-body">
+                  <span class="badge warn">Carmen</span>
+                  <h3>Tasting menu or seafood-heavy</h3>
+                  <p class="small">7-course tasting menu, or empanadas + ceviche + blue crab + fish/cazuela path.</p>
+                </div>
+              </article>
+
+              <article class="media-card">
+                <img src="https://lacevicheriacartagena.com/wp-content/uploads/2025/12/especiales.png" alt="La Cevicheria seafood specials">
+                <div class="media-body">
+                  <span class="badge good">La Cevichería</span>
+                  <h3>Ceviche plus a rice</h3>
+                  <p class="small">Order coconut/lime ceviche, shrimp empanadas if available, then seafood rice or paella.</p>
+                </div>
+              </article>
+
+              <article class="media-card">
+                <img src="https://hotelcasasanagustin.com/wp-content/uploads/2024/09/CevicheEljach-7207.png" alt="Alma Ceviche Eljach">
+                <div class="media-body">
+                  <span class="badge good">Alma</span>
+                  <h3>Ceviche Eljach first</h3>
+                  <p class="small">Then whole red snapper if available, or oxtail/duck for a richer final city dinner.</p>
+                </div>
+              </article>
+
+              <article class="media-card">
+                <img src="https://celelerestaurante.com/wp-content/uploads/2025/06/Recurso-3.png" alt="Celele food and ingredients">
+                <div class="media-body">
+                  <span class="badge book">Celele</span>
+                  <h3>Caribbean tasting menu</h3>
+                  <p class="small">Use Volver al Origen without pairing unless you want dinner to become the entire evening.</p>
+                </div>
+              </article>
+
+              <article class="media-card">
+                <img src="https://images.squarespace-cdn.com/content/v1/5f47fcd26f9f9665d91b3156/1612304281655-C0HZ9VLKK9KGXYY6S5J7/%5BBAR%5Dwebsite-portada.png?format=1000w" alt="El Baron cocktails">
+                <div class="media-body">
+                  <span class="badge blue">El Barón</span>
+                  <h3>Cocktails first</h3>
+                  <p class="small">Tell the bartender a base spirit; snacks if needed, but treat this as drinks-first.</p>
+                </div>
+              </article>
+
+              <article class="media-card">
+                <img src="https://m.ahstatic.com/is/image/accorhotels/aja_p_6334-43:16by9?fmt=jpg&amp;wid=640&amp;hei=360&amp;qlt=80" alt="Humo restaurant at Sofitel Baru">
+                <div class="media-body">
+                  <span class="badge good">Humo</span>
+                  <h3>Use the FHR credit well</h3>
+                  <p class="small">Robata fish/seafood special, then the Bonsai dessert Accor highlights.</p>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section id="wallet">
+            <div class="section-head">
+              <div>
+                <span class="eyebrow">Wallet</span>
+                <h2>Saved details</h2>
+              </div>
+              <span class="badge good">private</span>
+            </div>
+
+            <div class="wallet-grid">
+              <article class="wallet-card">
+                <div class="btn-row"><span class="badge blue">Flight</span><span class="badge good">Confirmed</span></div>
+                <h3>JetBlue confirmation HMCWER</h3>
+                <dl class="detail-grid">
+                  <dt>Outbound</dt><dd>JFK T5 -> CTG, B6 1533, Sat Jun 27, 9:08 AM to 1:23 PM.</dd>
+                  <dt>Return</dt><dd>CTG -> JFK, B6 1532, Sun Jul 5, 2:55 PM to 9:12 PM.</dd>
+                  <dt>Seats</dt><dd>Outbound: 20E and 20D. Return: Ayush shown 20E.</dd>
+                  <dt>Fare</dt><dd>Blue Extra.</dd>
+                </dl>
+                <details>
+                  <summary>Private ticket numbers</summary>
+                  <div class="inside">Ayush ticket 2792109965402. Second traveler ticket 2792109965403.</div>
+                </details>
+              </article>
+
+              <article class="wallet-card">
+                <div class="btn-row"><span class="badge blue">City stay</span><span class="badge good">Confirmed</span></div>
+                <h3>Airbnb near Torre del Reloj</h3>
+                <dl class="detail-grid">
+                  <dt>Dates</dt><dd>Jun 27 to Jul 1, 2026. Check-in after 3 PM, checkout by 11 AM.</dd>
+                  <dt>Address</dt><dd>Cl. 32 # 8-11 / 8-22, La Matuna, Cartagena.</dd>
+                  <dt>Coords</dt><dd>10.4231521, -75.5480044.</dd>
+                  <dt>Use</dt><dd>Food, walking, old city, Getsemaní, saved-list base.</dd>
+                </dl>
+                <a class="btn secondary" href="https://www.google.com/maps/search/?api=1&amp;query=10.4231521,-75.5480044">Open address</a>
+              </article>
+
+              <article class="wallet-card">
+                <div class="btn-row"><span class="badge good">Resort</span><span class="badge good">Confirmed</span></div>
+                <h3>Sofitel Barú · Amex FHR</h3>
+                <dl class="detail-grid">
+                  <dt>Dates</dt><dd>Jul 1 to Jul 5, 2026. Check-in 3 PM, checkout noon.</dd>
+                  <dt>Confirm</dt><dd>9087266612808.</dd>
+                  <dt>Address</dt><dd>KM 7 Sector Porto Nao, Barú / Cartagena 130017.</dd>
+                  <dt>Benefits</dt><dd>Breakfast for two, $100 F&amp;B credit, upgrade if available, late checkout.</dd>
+                </dl>
+                <div class="btn-row">
+                  <a class="btn secondary" href="https://sofitel.accor.com/en/hotels/B0P5.html?merchantid=seo-maps-CO-B0P5&amp;sourceid=aw-cen">Hotel site</a>
+                  <a class="btn secondary" href="mailto:reservations.baru@sofitel.com">Email</a>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section id="runbook">
+            <div class="section-head">
+              <div>
+                <span class="eyebrow">Prep</span>
+                <h2>Before we go</h2>
+              </div>
+              <span class="badge book">checklist</span>
+            </div>
+
+            <div class="four-col">
+              <article class="wallet-card">
+                <h3>72 hours before JFK</h3>
+                <ul class="micro-list">
+                  <li>Complete CheckMig entry for both travelers after Wed Jun 24, 9:08 AM ET.</li>
+                  <li>Download flight, Airbnb, Sofitel, and transfer confirmations.</li>
+                  <li>Confirm Airbnb entrance and WhatsApp contact.</li>
+                  <li>Verify dinner reservations and cancellation windows.</li>
+                </ul>
+                <a class="btn secondary" href="https://portal.migracioncolombia.gov.co/tramites-y-servicios/aplicativos/checkmig">Official CheckMig</a>
+              </article>
+
+              <article class="wallet-card">
+                <h3>City notes</h3>
+                <ul class="micro-list">
+                  <li>Use hotel cars, official taxis, or dispatch/car apps.</li>
+                  <li>Do not hail random street taxis.</li>
+                  <li>Keep phones/cameras discreet in crowded areas and late at night.</li>
+                  <li>Use protected ATMs inside banks, malls, or hotels.</li>
+                </ul>
+              </article>
+
+              <article class="wallet-card">
+                <h3>Weather + packing</h3>
+                <ul class="micro-list">
+                  <li>July highs around 88°F, lows around 79°F; humidity is heavy.</li>
+                  <li>Breathable clothes, hat, sunglasses, sunscreen, sandals.</li>
+                  <li>One smart-casual dinner/bar outfit for Alma/Carmen/Alquímico.</li>
+                  <li>Save offline maps and reservation screenshots.</li>
+                </ul>
+              </article>
+
+              <article class="wallet-card">
+                <h3>Every morning</h3>
+                <ul class="micro-list">
+                  <li>Open the current day card and route before leaving Wi-Fi.</li>
+                  <li>Check heat/rain, dinner status, and any transfer timing.</li>
+                  <li>Screenshot the next address, confirmation, and route.</li>
+                  <li>Send Sofia only the changes, not the whole plan again.</li>
+                </ul>
+                <a class="btn secondary" href="https://docs.google.com/document/d/1YLsS78CFrkHEpSCIXuG1nFmwgKnjVeq-fJJRgqyAaj8">Open critical doc</a>
+              </article>
+            </div>
+          </section>
+
+          <footer>
+            <p>Private page for Ayush and Sofia. <a href="/auth/logout">Sign out on this device</a>.</p>
+          </footer>
+        </main>
+
+      </div>
+    </div>
+  </div>
+
+  <nav class="mobile-nav" aria-label="Mobile navigation">
+    <a href="#command"><span class="icon"><svg viewBox="0 0 24 24"><path d="M4 4h7v7H4zM13 4h7v5h-7zM13 11h7v9h-7zM4 13h7v7H4z"/></svg></span>Home</a>
+    <a href="#decisions"><span class="icon"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>To-do</a>
+    <a href="#itinerary"><span class="icon"><svg viewBox="0 0 24 24"><path d="M8 2v4M16 2v4M3 10h18"/><rect x="3" y="4" width="18" height="18" rx="2"/></svg></span>Days</a>
+    <a href="#maps"><span class="icon"><svg viewBox="0 0 24 24"><path d="M9 18l-6 3V6l6-3 6 3 6-3v15l-6 3-6-3z"/><path d="M9 3v15M15 6v15"/></svg></span>Routes</a>
+    <a href="#wallet"><span class="icon"><svg viewBox="0 0 24 24"><path d="M4 7h16v13H4z"/><path d="M4 7l2-4h12l2 4"/><path d="M8 12h8"/></svg></span>Wallet</a>
+  </nav>
+
+  <script>
+    const tripStart = new Date('2026-06-27T09:08:00-04:00');
+    const tripEnd = new Date('2026-07-05T21:12:00-04:00');
+    const now = new Date();
+    const countdownPill = document.getElementById('countdownPill');
+    const phaseBadge = document.getElementById('phaseBadge');
+    const dayMs = 24 * 60 * 60 * 1000;
+
+    function updatePhase() {
+      if (!countdownPill || !phaseBadge) return;
+      if (now < tripStart) {
+        const days = Math.ceil((tripStart - now) / dayMs);
+        countdownPill.textContent = `${days} ${days === 1 ? 'day' : 'days'} until JFK -> CTG`;
+        phaseBadge.textContent = 'Before we go';
+      } else if (now <= tripEnd) {
+        const day = Math.max(1, Math.ceil((now - tripStart) / dayMs));
+        countdownPill.textContent = `Day ${day} on the trip`;
+        phaseBadge.textContent = 'On the trip';
+      } else {
+        countdownPill.textContent = 'Trip done';
+        phaseBadge.textContent = 'Archive';
+      }
+    }
+
+    updatePhase();
+
+    const todayInCartagena = new Intl.DateTimeFormat('en-CA', {
+      timeZone: 'America/Bogota',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    }).format(new Date());
+
+    document.querySelectorAll('.day-card[data-trip-day]').forEach((card) => {
+      card.classList.toggle('today', card.dataset.tripDay === todayInCartagena);
+    });
+
+    document.querySelectorAll('input[type="checkbox"][data-key]').forEach((box) => {
+      const key = `cartagena-itinerary:${box.dataset.key}`;
+      box.checked = localStorage.getItem(key) === 'true';
+      box.addEventListener('change', () => {
+        localStorage.setItem(key, String(box.checked));
+      });
+    });
+
+    document.querySelectorAll('.tabbar button').forEach((button) => {
+      button.addEventListener('click', () => {
+        button.parentElement.querySelectorAll('button').forEach((peer) => peer.classList.remove('active'));
+        button.classList.add('active');
+        const track = document.querySelector('.day-track');
+        if (!track) return;
+        track.style.gridTemplateColumns = button.dataset.view === 'stay'
+          ? 'repeat(2, minmax(260px, 1fr))'
+          : '';
+      });
+    });
+  </script>
+</body>
+</html>
